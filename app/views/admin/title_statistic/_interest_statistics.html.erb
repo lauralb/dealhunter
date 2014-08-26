@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+
+
+<div id="interest_offer_chart" style="height: 275px;">
+</div>
+
+<div id="interest_client_chart" style="height: 275px;">
+</div>
+<script>
+
+    new Morris.Donut({
+        // ID of the element in which to draw the chart.
+        element: 'interest_offer_chart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+
+
+        data: [
+
+            <% @interest_offer.each do |key,value| %>
+                {label: "<%=key%>", value: <%= value %>},
+            <% end %>
+
+        ],
+
+        colors: [
+            '#e23351',
+            '#0BA462'
+        ]
+
+    });
+
+    new Morris.Donut({
+        // ID of the element in which to draw the chart.
+        element: 'interest_client_chart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+
+
+        data: [
+
+            <% @interest_client.each do |key,value| %>
+            {label: "<%=key%>", value: <%= value %>},
+            <% end %>
+
+        ],
+
+        colors: [
+            '#e23351',
+            '#0BA462'
+        ]
+
+    });
+</script>
