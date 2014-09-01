@@ -12,6 +12,9 @@ ActiveAdmin.register Offer do
   filter :company
   filter :branch
 
+  form :partial => "form"
+
+
   show do |f|
     attributes_table do
       row :id
@@ -24,7 +27,7 @@ ActiveAdmin.register Offer do
     end
 
     panel "Premios" do
-      table_for(offer.prices) do |t|
+      table_for(offer.prizes) do |t|
         t.column("Nombre"){ |item| item.name}
         t.column("Precio real"){|item| item.real_price}
         t.column("Porcentaje descuento"){|item| item.discount_percentage}

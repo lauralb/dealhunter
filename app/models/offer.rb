@@ -14,7 +14,7 @@ class Offer < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  validates_presence_of :name, :start_date, :end_date
+  validates_presence_of :name, :start_date, :end_date, :branch, :branch_id
   validate :time_coherence
 
   scope :ended, Offer.where('end_date < ?', Date.today)
