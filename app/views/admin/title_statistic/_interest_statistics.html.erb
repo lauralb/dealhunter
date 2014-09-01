@@ -3,12 +3,21 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
 
+<div class="row">
 
-<div id="interest_offer_chart" name= "Offer Chart"style="height: 275px;">
+  <div style="float: left;width: 50%">
+    <h1 align="center">Intereses por Ofertas</h1>
+    <div id="interest_offer_chart" name= "Offer Chart"style="height: 275px; display: block; margin: auto">
+    </div>
+  </div>
+
+<div style="float: right; width: 50%">
+  <h1 align="center">Intereses por Usuario</h1>
+  <div id="interest_client_chart" name="Client Chart"style="height: 275px; display: block; margin: auto" >
+</div>
+</div>
 </div>
 
-<div id="interest_client_chart" name="Client Chart"style="height: 275px;">
-</div>
 <script>
 
     new Morris.Donut({
