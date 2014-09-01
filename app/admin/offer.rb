@@ -3,6 +3,8 @@ ActiveAdmin.register Offer do
     column :id
     column :name
     column :company
+    column :start_date
+    column :publication_date
     column :branch
     default_actions
   end
@@ -21,6 +23,7 @@ ActiveAdmin.register Offer do
       row :name
       row :company
       row :branch
+      row :publication_date
       row :start_date
       row :end_date
       row :photo
