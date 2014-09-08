@@ -48,6 +48,8 @@ gem 'gmaps4rails', '1.5.3'
 
 gem 'eventmachine'
 
+gem 'koala'
+
 #gem 'thin'
 
 #gem 'faye', '0.8.9'

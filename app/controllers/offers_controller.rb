@@ -54,6 +54,7 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
+    facebookMethod
     offer = params[:offer]
     @offer = Offer.new
     @offer.prizes_attributes = offer[:prizes_attributes]
@@ -92,7 +93,30 @@ class OffersController < ApplicationController
     end
   end
 
-  # PUT /offers/1
+  def signinfacebook
+    @callback_url = 'http://localhost:3000/users/home/facebookMethod'
+    session['oauth'] = Koala::Facebook::OAuth.new('APP_ID', 'App_Secret', @callback_url)
+    @url=session['oauth'].url_for_oauth_code(:permissions => "manage_pages,publish_stream")
+    redirect_to @url
+  end
+
+  def facebookMethod
+    @user = Koala::Facebook::API.new('CAAV42X5Tty0BAMGsQtHWuTX5m2H2ZBd4TdpBMKczZAUhym8Ax0Revz4juBdBOsV6fKZACi7UtOzgxW7i6v2B0OtJiH1Gzqp7uZAVOV8enXr68SX0dxY5EwXE2oIrZABVEfy9NAYEjGUuRtBvmLHEsIp3PyY3rs4RZCCJdJdyG5XSUOFAsKUFVHmS4knNycMNumE0Tv18X3ZBchIKhThGp8klLRrHOZBqhDwZD')
+    page_access_token = @user.get_connections('me', 'accounts').first['access_token'] #this gets the users first page.
+    @page = Koala::Facebook::API.new(page_access_token)
+#    @page.put_connections('me', "feed", :message => "Page writting to user's wall(1)!")
+    @page.put_object('1474232979498488','feed',:message => "asd")
+=begin
+    user = Koala::Facebook::API.new('CAAV42X5Tty0BAMGsQtHWuTX5m2H2ZBd4TdpBMKczZAUhym8Ax0Revz4juBdBOsV6fKZACi7UtOzgxW7i6v2B0OtJiH1Gzqp7uZAVOV8enXr68SX0dxY5EwXE2oIrZABVEfy9NAYEjGUuRtBvmLHEsIp3PyY3rs4RZCCJdJdyG5XSUOFAsKUFVHmS4knNycMNumE0Tv18X3ZBchIKhThGp8klLRrHOZBqhDwZD')
+
+    page_token = user.get_page_access_token('1474232979498488')['access_token']
+    page = Koala::Facebook::API.new(page_token)
+    page.put_wall_post("Postiamos",{ "name" => "Youmitter", "link" => "http://yourpage.com&#8221;","caption" => "nose",})
+=end
+
+  end
+
+    # PUT /offers/1
   # PUT /offers/1.json
   def update
     @offer = Offer.find(params[:id])
