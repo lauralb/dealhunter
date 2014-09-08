@@ -97,6 +97,22 @@ es:
               too_short: Demasiado corta (min 8 caracteres)
               confirmation: Contraseñas no coinciden
               blank: Completar
+        offer:
+          attributes:
+            publication_date:
+              blank: Fecha de publicacion vacia
+            start_date:
+              blank: Fecha de inicio vacia
+            end_date:
+              blank: Fecha de finalizacion vacia
+        prize:
+          attributes:
+            name:
+              blank: Completar titulo del premio
+            real_price:
+              blank:  Completar precio real del premio
+            discount_percentage:
+              blank:  Completar el descuento del premio
         company:
           attributes:
             name:
