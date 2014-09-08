@@ -36,8 +36,6 @@ DealHunter::Application.routes.draw do
 
   match 'users/statistics' => 'users#statistics'
 
-  match 'users/home/facebookMethod/' => 'offers_controller#facebookMethod'
-
   root :to => "users#home"
 
   resources :countries
