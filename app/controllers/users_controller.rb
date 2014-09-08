@@ -171,10 +171,10 @@ class UsersController < ApplicationController
   end
 
   def home_view
-    @a =  params[:company]
     session[:body]='offer-listing-page'
     @user = current_user
     @offers = Array.new
+
     if @user.company?
       @offers = Offer.actual.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).order("created_at DESC").take(6)
     else
@@ -186,8 +186,28 @@ class UsersController < ApplicationController
         end
       end
       @offers=offers.sort_by {|e| e.get_current_weight}.reverse
-
     end
+
+    # Filter
+    min_price = params[:search_price].split(/,/).at(0).to_i
+    max_price = params[:search_price].split(/,/).at(1).to_i
+
+    @offers.delete_if do |offer|
+      !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
+          offer.title.name != params[:search_title] || # Filter by title
+          offer.start_date < Date._parse(params[:search_date], "%d/%m/%Y") || # Filter by date
+          offer.prizes.get(0).real_price > max_price || # Filter by max price
+          offer.prizes.get(0).real_price < min_price # Filter by min price
+    end
+
+    #Filter by recomendation
+    recomendations_only = params[:search_recomendations]=="on"? true : false
+    if recomendations_only 
+      @offers.delete_if do |offer|
+        offer.weight < 1
+      end
+    end
+
   end
 
   def homeee_view(branch)
