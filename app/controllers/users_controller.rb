@@ -171,6 +171,7 @@ class UsersController < ApplicationController
   end
 
   def home_view
+    @a =  params[:company]
     session[:body]='offer-listing-page'
     @user = current_user
     @offers = Array.new
