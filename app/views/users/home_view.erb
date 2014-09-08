@@ -11,33 +11,34 @@
   <div class="row" style="background: #ffffff">
     <h1 style="text-align: center">Buscar <%=@a%> </h1>
 
-    <%= form_tag %>
+    <%= form_tag do %>
     <div style="float: left; margin-left:10% ">
         <h5>Interes</h5>
-        <select id="search-title">
+        <select id="search-title" name="search-title">
         <% Title.all.each do |title| %>
             <option><%=title.name%></option>
         <%end%>
         </select>
       <br>
       <h5>Precio</h5>
-      <input type="text" class="slider" data-slider-min="0" data-slider-max="1000" id="search-price">
+      <input type="text" class="slider" data-slider-min="0" data-slider-max="1000" id="search-price" name="search-price">
       <p align="center">$<span id="min-price"></span> - $<span id="max-price"></span></p>
     </div>
 
     <div style="float: right; margin-right: 10%">
       <h5>Empresa</h5>
-      <input type="text" placeholder="Empresa" id="company">
+      <input type="text" placeholder="Empresa" id="company" name="search-company">
       <br>
       <h5>Fecha de comienzo</h5>
-      <input type="text" class="datepicker" placeholder="dd/mm/yyyy" id="search-date"><br>
+      <input type="text" class="datepicker" placeholder="dd/mm/yyyy" id="search-date" name="search-date" ><br>
       <h5>Solo recomendados</h5>
-      <input type="checkbox" class="switch">
+      <input type="checkbox" class="switch" name="search-recomendations">
 
         <%= submit_tag %>
       <br>
       <br>
       </div>
+        <% end %>
     <script>
       //Documentation -> /assets/bootstrap-switch-master
       $(".switch").bootstrapSwitch();
