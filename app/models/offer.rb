@@ -6,7 +6,7 @@ class Offer < ActiveRecord::Base
   has_and_belongs_to_many :titles
   belongs_to :branch
 
-  attr_accessible :gmaps, :name, :photo, :branch_id, :prizes_attributes, :description, :titles
+  attr_accessible :gmaps, :name, :photo, :branch_id, :prizes_attributes, :description, :titles, :publication_date
   attr_accessible :start_date, :end_date
   attr_accessor :current_weight
 
@@ -14,7 +14,7 @@ class Offer < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  validates_presence_of :name, :start_date, :end_date
+  validates_presence_of :name, :start_date, :end_date, :branch, :branch_id
   validate :time_coherence
 
   scope :ended, Offer.where('end_date < ?', Date.today)

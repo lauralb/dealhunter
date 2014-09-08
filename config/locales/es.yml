@@ -1,9 +1,7 @@
 es:
-
   formtastic:
     :yes: "Sí"
     :no: "No"
-
   activerecord:
     attributes:
       admin_user:
@@ -62,6 +60,7 @@ es:
         number: Número
       offer:
         company: Empresa
+        publication_date: Fecha de publicación
         end_date: Fecha de fin
         name: Nombre
         start_date: Fecha de inicio
