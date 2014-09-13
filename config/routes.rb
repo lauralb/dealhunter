@@ -1,10 +1,19 @@
 DealHunter::Application.routes.draw do
 
+  get "sessions/create"
+
+  get "sessions/destroy"
+
+  get "home/show"
+
   resources :clients_companies
 
 
   resources :newsletter_frequencies
 
+  match 'auth/:provider/callback', to:'session#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
 
   match 'pages/work_with_us' => 'pages#work_with_us'
   match 'pages/form_company' => 'pages#form_company'
