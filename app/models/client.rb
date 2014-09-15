@@ -8,6 +8,8 @@ class Client < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :user_id, :address_attributes, :titles, :newsletter_frequency_id
 
+  after_validation :geocode
+
   accepts_nested_attributes_for :address, :allow_destroy => true
 
   validates_presence_of :user

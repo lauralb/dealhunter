@@ -48,6 +48,8 @@ gem "kaminari"
 
 gem 'gmaps4rails', '1.5.3'
 
+# gem 'geocoder'
+
 gem 'eventmachine'
 
 #gem 'thin'
