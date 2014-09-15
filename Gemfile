@@ -48,6 +48,12 @@ gem 'gmaps4rails', '1.5.3'
 
 gem 'eventmachine'
 
+gem 'omniauth'
+
+gem 'devise'
+
+gem 'omniauth-facebook'
+
 #gem 'thin'
 
 #gem 'faye', '0.8.9'

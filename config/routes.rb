@@ -57,7 +57,10 @@ DealHunter::Application.routes.draw do
 
   resources :addresses
 
-  devise_for :users, :controllers => { :registrations => "registrations", :passwords => "passwords"}
+  # devise_for :users, :controllers => { :registrations => "registrations", :passwords => "passwords"}
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
 
   resources :clients
 

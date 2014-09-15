@@ -49,10 +49,14 @@
               </div>
           <%end%>
           <h3>Completá los siguientes datos:</h3>
+
+
           <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
               <%= f.email_field :email, :class => "input wide", :placeholder=>"Email" , :required => true%>
 
               <%= f.password_field :password, :class => "input wide", :placeholder => "Contraseña", :required => true%>
+
+
 
               <p><a href="#myModalPassword" role="button" class="forgot-pass" data-toggle="modal">Olvidé mi contraseña</a></p>
               <p>¿Todavía no sos miembro? <a href="<%= new_user_registration_path %>">Registrate en Deal Hunter.</a></p>
@@ -62,8 +66,10 @@
                   </label>
               <% end -%>
 
-              <button type="submit" class="btn btn-dealhunter medium full-width rounded-borders-btn">Entrar</button>
-          <% end %>
+              <button type="submit" class="btn btn-dealhunter medium full-width rounded-borders-btn">Entrar</button> <br/><br/>
+              <%= link_to "Ingresa con Facebook", user_omniauth_authorize_path(:facebook), :class => 'btn btn-dealhunter medium full-width rounded-borders-btn', :style =>'background-color: rgb(0, 201, 252);' %>
+
+        <% end %>
         </div>
         <!--<div style="padding: 0px 2% 2% 2%;">-->
         <!--<a href="#myModal" role="button" class="btn btn-facebook medium full-width" data-toggle="modal"><i class="icon-facebook"></i>Conectar con Facebook</a>-->
