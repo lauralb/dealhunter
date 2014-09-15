@@ -206,7 +206,23 @@ class UsersController < ApplicationController
     @offers = Array.new
     @longitude = -58.4
     @latitude = -34.6
-    @json = Offer.actual.to_gmaps4rails
+
+    current_client =  current_user.client.id
+    @json = Offer.actual.to_gmaps4rails do |offer, marker|
+      if offer.weight(current_client)>0
+        marker.picture({
+            :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF0000|000000", # up to you to pass the proper parameters in the url, I guess with a method from device
+            :width   => 32,
+            :height  => 32
+                       })
+      else
+        marker.picture({
+            :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|3333FF|000000",
+            :width => 32,
+            :height => 32
+                       })
+      end
+    end
     address = Address.new
     if @user.user_role_id == 2
       address = @user.client.address
