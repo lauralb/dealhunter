@@ -206,7 +206,7 @@ class UsersController < ApplicationController
           offer.prizes.get(0).real_price < min_price                              # Filter by min price
           max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
     end
-    #Filter by recomendation
+    #Filter by recomendations
     recomendations_only = params[:search_recomendations]=="on"? true : false
     if recomendations_only
       @offers.delete_if do |offer|
