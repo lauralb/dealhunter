@@ -189,20 +189,26 @@ class UsersController < ApplicationController
     end
 
     # Filter
-    min_price = params[:search_price].split(/,/).at(0).to_i
-    max_price = params[:search_price].split(/,/).at(1).to_i
+    price_range = params[:search_price]
+    min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
+    max_price = price_range != nil ? price_range.split(/,/).at(1).to_i : 1000
+    max_distance = params[:search_distance].to_i
+    longitude = params[:longitude].to_i
+    latitude = params[:latitude].to_i
+
+
 
     @offers.delete_if do |offer|
       !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
-          offer.title.name != params[:search_title] || # Filter by title
-          offer.start_date < Date._parse(params[:search_date], "%d/%m/%Y") || # Filter by date
-          offer.prizes.get(0).real_price > max_price || # Filter by max price
-          offer.prizes.get(0).real_price < min_price # Filter by min price
+          offer.title.name != params[:search_title] ||                            # Filter by title
+          offer.start_date < Date._parse(params[:search_date], "%d/%m/%Y") ||     # Filter by date
+          offer.prizes.get(0).real_price > max_price ||                           # Filter by max price
+          offer.prizes.get(0).real_price < min_price                              # Filter by min price
+          max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
     end
-
     #Filter by recomendation
     recomendations_only = params[:search_recomendations]=="on"? true : false
-    if recomendations_only 
+    if recomendations_only
       @offers.delete_if do |offer|
         offer.weight < 1
       end
@@ -406,4 +412,20 @@ class UsersController < ApplicationController
     end
     return comp
   end
+
+  private
+  def  getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2)
+       radius = 6371 # Radius of the earth in km
+   dLat = deg2rad(lat2-lat1)  # deg2rad below
+   dLon = deg2rad(lon2-lon1);
+   a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2)
+   c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+   d = radius * c; # Distance in km
+  return d
+       end
+
+  def deg2rad(deg)
+    return deg * (Math.PI/180)
+  end
+
 end
