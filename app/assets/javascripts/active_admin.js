@@ -1,8 +1,11 @@
-
-//= require jquery_nested_form
+//= require jquery.min.js
+//= require jquery_ujs
 //= require jquery.tagsinput
 //= require jquery.tokeninput
 //= require bootstrap
+//= require jquery_nested_form
+
+
 
 $(document).ready(function() {
     $("h1.site_title").remove();
@@ -14,7 +17,7 @@ $(document).ready(function() {
     $("div#footer p").remove();
 
 
-})
+});
 
 
 

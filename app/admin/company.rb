@@ -1,5 +1,6 @@
 ActiveAdmin.register Company do
 
+
   index do
     column :id
     column :email

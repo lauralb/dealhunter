@@ -26,6 +26,8 @@ gem 'whenever', git: 'git://github.com/Insomniware/whenever.git', :require => fa
 
 gem "fog"
 
+gem 'unf'
+
 gem 'jquery-rails'
 
 gem 'activeadmin'
