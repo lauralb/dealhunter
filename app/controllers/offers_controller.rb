@@ -27,11 +27,6 @@ class OffersController < ApplicationController
     @latitude = address.latitude
     @longitude = address.longitude
 
-    location = request.location
-    @latitude_client  = location.coordinates
-
-
-
     addresses = Array.new
     addresses.push(address)
     #@json = addresses.to_gmaps4rails
