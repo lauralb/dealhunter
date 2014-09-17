@@ -1,0 +1,35 @@
+#encoding: utf-8
+
+<%= semantic_nested_form_for [:admin, @client] do |f|%>
+
+    <div>
+      <%=f.inputs "Info de Usuario" , :for => [:user, f.object.user || User.new] do |h|%>
+          <%=f.input :first_name %>
+          <%=f.input :last_name %>
+          <%=h.input :email %>
+          <%=h.input :password %>
+          <%=h.input :password_confirmation %>
+          <%=h.hidden_field :user_role_id, :label => "Role", :value => UserRole.where("name = ?", "ClientUSer" ).first() %>
+    <% end %>
+    </div>
+
+    <div>
+      <%=f.inputs "Direccion" , :for =>  [:address, f.object.address || Address.new] do |a|%>
+          <%= a.input :street %>
+          <%= a.input :number %>
+          <%= a.input :floor %>
+          <%= a.input :city %>
+          <%= a.input :state %>
+          <%= a.input :country %>
+      <%end%>
+    </div>
+
+    <%= f.actions do %>
+        <%= f.action :submit %>
+        <li class="cancel">
+          <%=link_to "Cancelar", admin_companies_path%>
+        </li>
+    <% end %>
+
+
+<% end%>

@@ -20,7 +20,11 @@
       <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
       <script type="text/javascript">stLight.options({publisher: "a8967170-80ac-4677-9f17-a0a60edb39f5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
+<<<<<<< HEAD
           {lang: 'es'}
+=======
+      {lang: 'es'}
+>>>>>>> 3cf8e7244af81e88ee2e918c787e8f9390b11781
 
     </header>
 
@@ -85,10 +89,10 @@
         <div class="tab-pane" id="mapas" align="center">
 
           <%=  gmaps("map_options" => {
-               "zoom" => 13,
-                 "center_latitude" => @latitude,
-                 "center_longitude" => @longitude,
-                 "auto_adjust" => true,
+                  "zoom" => 13,
+                  "center_latitude" => @latitude,
+                  "center_longitude" => @longitude,
+                  "auto_adjust" => true,
           }, "markers" => {"data" => @json}) %>
 
         </div>
