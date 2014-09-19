@@ -233,6 +233,7 @@
 <!--Set the current location-->
 <script rel="script" type="text/javascript">
 </script>
+
 <script type="text/javascript" charset="utf-8">
     var lat = document.getElementById("latitude");
     var long = document.getElementById("longitude");
@@ -245,7 +246,10 @@
     }
 
     function setPosition(position) {
-        $("#latitude").val(position.coords.latitude);
-        $("#longitude").val(position.coords.longitude);
+        alert(position.coords.latitude)
+        lat.value = position.coords.latitude;
+        long.value = position.coords.longitude;
+//        $("#latitude").val(position.coords.latitude);
+//        $("#longitude").val(position.coords.longitude);
     }
 </script>
