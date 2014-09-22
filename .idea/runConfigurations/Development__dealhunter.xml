@@ -23,8 +23,18 @@
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+<<<<<<< HEAD
     <RunnerSettings RunnerId="RubyDebugRunner" />
     <ConfigurationWrapper RunnerId="RubyDebugRunner" />
+=======
+<<<<<<< HEAD
+    <RunnerSettings RunnerId="RubyDebugRunner" />
+    <RunnerSettings RunnerId="RubyRunner" />
+    <ConfigurationWrapper RunnerId="RubyDebugRunner" />
+    <ConfigurationWrapper RunnerId="RubyRunner" />
+=======
+>>>>>>> 3cf8e7244af81e88ee2e918c787e8f9390b11781
+>>>>>>> origin/DEAL-006
     <method />
   </configuration>
 </component>

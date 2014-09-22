@@ -21,4 +21,8 @@ class Address < ActiveRecord::Base
     end
   end
 
+  def full_address
+    self.street + " " +self.number.to_s + ", (Piso " + self.floor + ")." + self.city + ", "+ self.state+ " - " + self.country.name
+  end
+
 end
