@@ -1,7 +1,7 @@
 # encoding: utf-8
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :fog
+  storage :file
   process :convert => 'jpg'
 
   version :thumb do

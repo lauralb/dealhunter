@@ -6,13 +6,18 @@ class Client < ActiveRecord::Base
   belongs_to :newsletter_frequency
   has_and_belongs_to_many :companies
 
-  attr_accessible :first_name, :last_name, :user_id, :address_attributes, :titles, :newsletter_frequency_id
+  attr_accessible :first_name, :last_name, :address_attributes, :titles, :newsletter_frequency_id,:user_attributes, :user_id
 
   after_validation :geocode
 
   accepts_nested_attributes_for :address, :allow_destroy => true
+  accepts_nested_attributes_for :user, :allow_destroy => true,
+                                :reject_if => proc { |attributes|
+                                  attributes['email'].blank? or
+                                      attributes['password'].blank?
+                                }
 
-  validates_presence_of :user
+  # validates_presence_of :user
 
   def prefer(preference)
     prefer = false
@@ -102,5 +107,8 @@ class Client < ActiveRecord::Base
     return total
   end
 
+  def email
+    user.email
+  end
 
 end

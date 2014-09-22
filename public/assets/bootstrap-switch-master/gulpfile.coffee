@@ -92,7 +92,7 @@ gulp.task 'connect', ['docs'], ->
 
 gulp.task 'open', ['connect'], ->
   gulp
-  .src './index.html'
+  .src './index.html.erb'
   .pipe plugins.open '', url: "http://#{SERVER_HOST}:#{SERVER_PORT}"
 
 gulp.task 'watch', ['connect'], ->

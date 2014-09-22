@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140901203027) do
+=======
+ActiveRecord::Schema.define(:version => 20140908225514) do
+>>>>>>> origin/DEAL-005
+=======
+ActiveRecord::Schema.define(:version => 20140915224022) do
+>>>>>>> origin/DEAL-006
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -139,7 +147,11 @@ ActiveRecord::Schema.define(:version => 20140901203027) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "gmaps"
+<<<<<<< HEAD
     t.date     "publication_date"
+=======
+    t.boolean  "publicated"
+>>>>>>> origin/DEAL-005
   end
 
   create_table "offers_titles", :force => true do |t|
@@ -190,6 +202,8 @@ ActiveRecord::Schema.define(:version => 20140901203027) do
     t.string   "last_sign_in_ip"
     t.integer  "user_role_id"
     t.boolean  "update_password"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

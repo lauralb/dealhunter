@@ -6,7 +6,7 @@ class Offer < ActiveRecord::Base
   has_and_belongs_to_many :titles
   belongs_to :branch
 
-  attr_accessible :gmaps, :name, :photo, :branch_id, :prizes_attributes, :description, :titles, :publication_date
+  attr_accessible :gmaps, :name, :photo, :branch_id, :prizes_attributes, :description, :titles, :publication_date, :publicated
   attr_accessible :start_date, :end_date
   attr_accessor :current_weight
 
@@ -29,6 +29,18 @@ class Offer < ActiveRecord::Base
   def get_current_weight
     if current_weight.nil? then return 0  end
     current_weight
+  end
+
+  def has_title(search_title)
+    has = false
+    self.titles.each do |t|
+      if t.name == search_title
+        has = true
+      end
+    end
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+has.to_s+">>>>>>>>>>>>>>>>>>>>>>>>>><"
+    return has
+
   end
 
   def prefer(preference)

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="RVM: ruby-1.9.3-p547 [dealhunter]" project-jdk-type="RUBY_SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="RVM: ruby-1.9.3-p547" project-jdk-type="RUBY_SDK" />
+>>>>>>> 6992a16b9cb92660efc11de1faef646a54a0fa74
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="RVM: ruby-1.9.3-p547 [dealhunter]" project-jdk-type="RUBY_SDK" />
+>>>>>>> origin/DEAL-003
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="RVM: ruby-1.9.3-p547 [dealhunter]" project-jdk-type="RUBY_SDK" />
+>>>>>>> origin/DEAL-005
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="RVM: ruby-1.9.3-p547 [dealhunter]" project-jdk-type="RUBY_SDK" />
+>>>>>>> origin/DEAL-006
+</project>
+

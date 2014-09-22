@@ -1,12 +1,22 @@
 DealHunter::Application.routes.draw do
 
+  get "sessions/create"
+
+  get "sessions/destroy"
+
+  get "home/show"
+
   resources :clients_companies
 
 
   resources :newsletter_frequencies
 
+
   match 'second_games/results' => 'second_games#results'
   match 'second_games/index' => 'second_games#index'
+  match 'auth/:provider/callback', to:'session#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
   match 'pages/work_with_us' => 'pages#work_with_us'
   match 'pages/form_company' => 'pages#form_company'
   match 'pages/faqs' => 'pages#faqs'
@@ -37,7 +47,6 @@ DealHunter::Application.routes.draw do
 
   match 'users/statistics' => 'users#statistics'
 
-
   root :to => "users#home"
 
   resources :countries
@@ -58,7 +67,10 @@ DealHunter::Application.routes.draw do
 
   resources :addresses
 
-  devise_for :users, :controllers => { :registrations => "registrations", :passwords => "passwords"}
+  # devise_for :users, :controllers => { :registrations => "registrations", :passwords => "passwords"}
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
 
   resources :clients
 

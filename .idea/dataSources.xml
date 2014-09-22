@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="DataSourceManagerImpl" format="xml" hash="2607981937">
+    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="6329853e-8568-4731-a87a-b18927762d7e">
+=======
+  <component name="DataSourceManagerImpl" format="xml" hash="1397719291">
+    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="31d54b5a-16d2-4c79-97dc-83d18b4f6bc9">
+>>>>>>> 6992a16b9cb92660efc11de1faef646a54a0fa74
+=======
+  <component name="DataSourceManagerImpl" format="xml" hash="2970812817">
+    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="c83693b8-3f7a-4ff9-98ee-8ccb60619024">
+>>>>>>> origin/DEAL-003
+=======
+  <component name="DataSourceManagerImpl" format="xml" hash="4255649300">
+    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="5dca8dab-52d0-41a4-b39d-302dd7d19086">
+>>>>>>> origin/DEAL-005
+=======
+  <component name="DataSourceManagerImpl" format="xml" hash="1018927000">
+    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="a2b81458-d314-46dd-b934-22854222cfbc">
+>>>>>>> origin/DEAL-006
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
