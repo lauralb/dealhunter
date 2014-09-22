@@ -174,6 +174,7 @@ class UsersController < ApplicationController
     session[:body]='offer-listing-page'
     @user = current_user
     @offers = Array.new
+
     if @user.company?
       @offers = Offer.actual.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).order("created_at DESC").take(6)
     else
@@ -185,8 +186,34 @@ class UsersController < ApplicationController
         end
       end
       @offers=offers.sort_by {|e| e.get_current_weight}.reverse
-
     end
+
+    # Filter
+    price_range = params[:search_price]
+    min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
+    max_price = price_range != nil ? price_range.split(/,/).at(1).to_i : 1000
+    max_distance = params[:search_distance].to_i
+    longitude = params[:longitude].to_i
+    latitude = params[:latitude].to_i
+
+
+
+    @offers.delete_if do |offer|
+      !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
+          offer.title.name != params[:search_title] ||                            # Filter by title
+          offer.start_date < Date._parse(params[:search_date], "%d/%m/%Y") ||     # Filter by date
+          offer.prizes.get(0).real_price > max_price ||                           # Filter by max price
+          offer.prizes.get(0).real_price < min_price                              # Filter by min price
+          max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
+    end
+    #Filter by recomendations
+    recomendations_only = params[:search_recomendations]=="on"? true : false
+    if recomendations_only
+      @offers.delete_if do |offer|
+        offer.weight < 1
+      end
+    end
+
   end
 
   def homeee_view(branch)
@@ -206,7 +233,23 @@ class UsersController < ApplicationController
     @offers = Array.new
     @longitude = -58.4
     @latitude = -34.6
-    @json = Offer.actual.to_gmaps4rails
+
+    current_client =  current_user.client.id
+    @json = Offer.actual.to_gmaps4rails do |offer, marker|
+      if offer.weight(current_client)>0
+        marker.picture({
+            :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF0000|000000", # up to you to pass the proper parameters in the url, I guess with a method from device
+            :width   => 32,
+            :height  => 32
+                       })
+      else
+        marker.picture({
+            :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|3333FF|000000",
+            :width => 32,
+            :height => 32
+                       })
+      end
+    end
     address = Address.new
     if @user.user_role_id == 2
       address = @user.client.address
@@ -385,4 +428,20 @@ class UsersController < ApplicationController
     end
     return comp
   end
+
+  private
+  def  getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2)
+       radius = 6371 # Radius of the earth in km
+   dLat = deg2rad(lat2-lat1)  # deg2rad below
+   dLon = deg2rad(lon2-lon1);
+   a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2)
+   c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+   d = radius * c; # Distance in km
+  return d
+       end
+
+  def deg2rad(deg)
+    return deg * (Math.PI/180)
+  end
+
 end
