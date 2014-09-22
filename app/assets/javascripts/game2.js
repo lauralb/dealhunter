@@ -6,6 +6,7 @@ function updateTimer(){
     seconds += 1;
     document.getElementById("timer-minutes").innerHTML = formatTime(parseInt(seconds/60));
     document.getElementById("timer-seconds").innerHTML = formatTime(seconds%60);
+    document.getElementById("time").value = seconds;
 }
 
 function formatTime(time){
@@ -15,5 +16,4 @@ function formatTime(time){
     } else {
         return timeString;
     }
-
 }

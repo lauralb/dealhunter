@@ -1,12 +1,65 @@
-div.container{
-    text-align: center;
-    width: 600px;
-    background: #ffff00;
-}
 body{
     margin: 0;
-    background-image: url("http://www.animatedimages.org/data/media/137/animated-clock-image-0004.gif");
+    background: url("http://www.iceflowstudios.com/v3/wp-content/uploads/2013/01/LoadingCircle_finalani.gif") no-repeat;
+    background-color: #f8f8f8;
+    background-size: 100%;
+    background-position: 50% -10%;
 }
+
+div.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -260px;
+    text-align: center;
+    width: 600px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.question h1{
+    color: #061117;
+}
+
+div.img img{
+    height: 300px;
+    width: 500px;
+}
+
+div.answer input:focus{
+    box-shadow: 0 0 5px #a5e7f4;
+    border: none;
+    padding: 10px;
+    margin-top: 21px;
+    margin-bottom: 1px;
+
+}
+
+div.answer input{
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px ;
+    margin-top: 20px;
+    border: solid 1px #dadada;
+}
+
+div.submit{
+    margin-bottom: 20px;
+}
+
+div.submit input{
+    background: -webkit-linear-gradient(#20d1ff, #1cb3d9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#20d1ff, #1cb3d9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#20d1ff, #1cb3d9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#20d1ff, #1cb3d9); /* Standard syntax */
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
 div.centered{
     display: block;
     margin: auto;
@@ -14,3 +67,4 @@ div.centered{
 div.hidden, input.hidden{
     display: none;
 }
+
