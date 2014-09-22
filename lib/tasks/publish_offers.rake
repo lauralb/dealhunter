@@ -5,12 +5,12 @@ task :publish_offers => :environment do
   @page = Koala::Facebook::API.new(page_access_token)
 
 
-  Offer.where(:publicated => false).each do |offer|
+  Offer.all.each do |offer|
 
-    if offer.start_date <= DateTime.now
+    if offer.start_date <= DateTime.now && !offer.publicated
       puts("entre una vez")
       t = offer.name
-      b = offer.description.first(50)+"..."
+      b = offer.description.first(50)+"..."  unless offer.description.nil?
 
       options = {
           :message     => "#{t}",
@@ -18,7 +18,7 @@ task :publish_offers => :environment do
           :link        => "www.facebook.com.ar" #"http://localhost:3000/offers/#{(offer.id).to_s}"
 #          :picture     => # "http://localhost:3000"+"#{offer.photo_url}"
       }
-      post = @page.put_object('1474232979498488','feed', options)
+      @page.put_object('1474232979498488','feed', options)
       offer.publicated = true
       offer.save!
       end
