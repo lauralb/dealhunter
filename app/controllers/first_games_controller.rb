@@ -1,4 +1,5 @@
 class FirstGamesController < InheritedResources::Base
+<<<<<<< Updated upstream
   def show
     @questions = Question.all
 
@@ -12,3 +13,13 @@ class FirstGamesController < InheritedResources::Base
 
   end
 end
+=======
+  def index
+
+  end
+
+  def results
+
+  end
+end
+>>>>>>> Stashed changes

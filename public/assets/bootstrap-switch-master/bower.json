@@ -15,7 +15,7 @@
     "CONTRIBUTING.md",
     "gulpfile.coffee",
     "gulpfile.js",
-    "index.html",
+    "index.html.erb",
     "package.json"
   ],
   "dependencies": {
