@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140901203027) do
+=======
+ActiveRecord::Schema.define(:version => 20140908225514) do
+>>>>>>> origin/DEAL-005
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -139,7 +143,11 @@ ActiveRecord::Schema.define(:version => 20140901203027) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "gmaps"
+<<<<<<< HEAD
     t.date     "publication_date"
+=======
+    t.boolean  "publicated"
+>>>>>>> origin/DEAL-005
   end
 
   create_table "offers_titles", :force => true do |t|

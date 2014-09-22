@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
+
   def index
     @offers = Offer.all
     @json = Address.all.to_gmaps4rails
@@ -56,6 +57,7 @@ class OffersController < ApplicationController
   def create
     offer = params[:offer]
     @offer = Offer.new
+    @offer.publicated = false
     @offer.prizes_attributes = offer[:prizes_attributes]
     @offer.name = offer[:name]
     @offer.start_date = offer[:start_date]

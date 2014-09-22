@@ -36,7 +36,6 @@ DealHunter::Application.routes.draw do
 
   match 'users/statistics' => 'users#statistics'
 
-
   root :to => "users#home"
 
   resources :countries
