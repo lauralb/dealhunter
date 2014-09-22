@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
     self.user_role_id == role_id
   end
 
-<<<<<<< HEAD
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
@@ -42,8 +41,10 @@ class User < ActiveRecord::Base
 
         )
       end
+    end
+  end
 
-=======
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -51,7 +52,6 @@ class User < ActiveRecord::Base
       user.name = auth.info.instance_variable_names
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
->>>>>>> 3cf8e7244af81e88ee2e918c787e8f9390b11781
     end
   end
 
