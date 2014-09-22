@@ -15,13 +15,13 @@ DealHunter::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
-<<<<<<< Updated upstream
+
   match 'first_games/show' => 'first_games#show'
   match 'first_games/question_mockups' => 'first_games#question_mockups'
-=======
+
   match 'first_games/index' => 'first_games#index'
   match 'first_games/results' => 'first_games#results'
->>>>>>> Stashed changes
+
   match 'pages/work_with_us' => 'pages#work_with_us'
   match 'pages/form_company' => 'pages#form_company'
   match 'pages/faqs' => 'pages#faqs'

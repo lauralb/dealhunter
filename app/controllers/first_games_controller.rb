@@ -1,5 +1,5 @@
 class FirstGamesController < InheritedResources::Base
-<<<<<<< Updated upstream
+
   def show
     @questions = Question.all
 
@@ -12,8 +12,7 @@ class FirstGamesController < InheritedResources::Base
   def question_mockups
 
   end
-end
-=======
+
   def index
 
   end
@@ -21,5 +20,6 @@ end
   def results
 
   end
+
 end
->>>>>>> Stashed changes
+
