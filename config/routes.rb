@@ -15,6 +15,8 @@ DealHunter::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
+  match 'first_games/show' => 'first_games#show'
+  match 'first_games/question_mockups' => 'first_games#question_mockups'
   match 'pages/work_with_us' => 'pages#work_with_us'
   match 'pages/form_company' => 'pages#form_company'
   match 'pages/faqs' => 'pages#faqs'

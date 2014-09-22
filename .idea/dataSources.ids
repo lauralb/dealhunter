@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
+<<<<<<< HEAD
   <data-source source="LOCAL" name="Rails dealhunter: development" uuid="95a4eb1b-83e9-4311-b41c-d988cb6323ec">
     <database-info product="SQLite" version="3.7.6.3" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
@@ -209,4 +210,12 @@
       <index name="index_users_on_email" unique="true" columns="email"/>
     </table>
   </data-source>
+=======
+  <data-source source="LOCAL" name="Rails dealhunter: development" uuid="3e725294-dcaf-4e98-a99e-19430b1396a4">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails dealhunter: production" uuid="efb3144b-7c5e-4042-a9a5-580a9c9dd37a">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+>>>>>>> de230e38ca0ce614f75ec2418c191f56959e6c3f
 </component>
