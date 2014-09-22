@@ -1,0 +1,46 @@
+
+body{
+    background: none;
+}
+
+body, html{
+    height: 95%;
+
+
+}
+
+#main-game2{
+    height: 100%;
+    width: 95%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    background: brown url('../../../assets/game2-index.jpg');
+    background-size: 100% 100%;
+    box-shadow: 0px 0px 15px 5px;
+}
+
+#centered-content{
+    min-width: 0%;
+    width: 500px;
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+    top: 50%;
+
+}
+
+#btn-begin{
+    margin-left: 25%;
+    margin-bottom: 0%;
+    margin-top: 5%;
+    margin-right: 0%;
+    height: 70PX;
+    width: 120PX;
+    box-shadow: 7px 5px 9px grey;
+}
+
+#deal-tionary{
+    font-size: 50px;
+    text-shadow: 4px 5px 1px grey;
+}
