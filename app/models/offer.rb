@@ -31,6 +31,18 @@ class Offer < ActiveRecord::Base
     current_weight
   end
 
+  def has_title(search_title)
+    has = false
+    self.titles.each do |t|
+      if t.name == search_title
+        has = true
+      end
+    end
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+has.to_s+">>>>>>>>>>>>>>>>>>>>>>>>>><"
+    return has
+
+  end
+
   def prefer(preference)
     prefer = false
     self.titles.each do |p|

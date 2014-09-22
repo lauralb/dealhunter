@@ -166,6 +166,8 @@ class UsersController < ApplicationController
       @offers=offers.sort_by {|e| e.get_current_weight}.reverse
     end
 
+  if !params[:id].nil?
+
 # Filter
     price_range = params[:search_price]
     min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
@@ -176,11 +178,11 @@ class UsersController < ApplicationController
 
     @offers.delete_if do |offer|
       !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
-          offer.title.name != params[:search_title] || # Filter by title
-          offer.start_date < Date._parse(params[:search_date], "%d/%m/%Y") || # Filter by date
-          offer.prizes.get(0).real_price > max_price || # Filter by max price
-          offer.prizes.get(0).real_price < min_price # Filter by min price
-      max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
+        !(offer.has_title(params[:search_title])) || # Filter by title
+        offer.start_date < Date.parse(params[:search_date], "%d/%m/%Y") || # Filter by date
+        offer.prizes[0].discounted_price > max_price || # Filter by max price
+        offer.prizes[0].discounted_price < min_price # Filter by min price
+        #max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
     end
 #Filter by recomendation
     recomendations_only = params[:search_recomendations]=="on"? true : false
@@ -190,6 +192,9 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  end
+
 
   def homeee_view(branch)
     session[:body]='offer-listing-page'
@@ -394,6 +399,6 @@ class UsersController < ApplicationController
     return d
   end
   def deg2rad(deg)
-    return deg * (Math.PI/180)
+    return deg * (Math::PI/180)
   end
 end
