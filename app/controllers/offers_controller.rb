@@ -7,10 +7,13 @@ class OffersController < ApplicationController
     @json = Address.all.to_gmaps4rails
     @latitude = -34.603683
     @longitude = -58.381244
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @offers }
     end
+
   end
 
   # GET /offers/1
@@ -24,6 +27,7 @@ class OffersController < ApplicationController
     address = @offer.branch.address
     @latitude = address.latitude
     @longitude = address.longitude
+
     addresses = Array.new
     addresses.push(address)
     #@json = addresses.to_gmaps4rails

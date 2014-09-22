@@ -4,48 +4,42 @@
 <script src="/assets/bootstrap-slider.js" rel="script" type="text/javascript"></script>
 <script src="/assets/bootstrap-datepicker.js" rel="script" type="text/javascript"></script>
 <script src="/assets/bootstrap-switch-master/dist/js/bootstrap-switch.min.js" rel="script" type="text/javascript"></script>
-
-
-
 <div class="container" id="main-content2">
   <div class="row" style="background: #ffffff">
     <h1 style="text-align: center">Buscar</h1>
     <%= form_tag(:id => 'search-form') do %>
 
-    <div style="float: left; margin-left:10% ">
-        <h5>Interés</h5>
-        <select id="search-title" name="search_title">
-        <% Title.all.each do |title| %>
-            <option><%=title.name%></option>
-        <%end%>
-        </select>
-      <br>
-      <h5>Precio</h5>
-      <input type="text" class="slider" data-slider-min="0" data-slider-max="1000" id="search-price" name="search_price">
-      <h5>Distancia</h5>
-      <input type="text" class="slider" name="search_distance" id="search-distance">
-
-    </div>
-
-    <div style="float: right; margin-right: 10%">
-      <h5>Empresa</h5>
-      <input type="text" placeholder="Empresa" id="search-company" name="search_company">
-      <br>
-      <h5>Fecha de comienzo</h5>
-      <input type="text" class="datepicker" placeholder="dd/mm/yyyy" id="search-date" name="search_date"><br>
-      <h5>Sólo recomendados</h5>
-      <input type="checkbox" id="search-recomendations" class="switch" name="search_recomendations">
-        <input type="text" id="latitude" name="latitude" style="display: none">
-        <input type="text" id="longitude" name="longitude" style="display: none">
-        <button onclick="submitSearch()">Buscar</button>
-      <br>
-      <br>
-      </div>
+        <div style="float: left; margin-left:10% ">
+          <h5>Interés</h5>
+          <select id="search-title" name="search_title">
+            <% Title.all.each do |title| %>
+                <option><%=title.name%></option>
+            <%end%>
+          </select>
+          <br>
+          <h5>Precio</h5>
+          <input type="text" class="slider" data-slider-min="0" data-slider-max="1000" id="search-price" name="search_price">
+          <h5>Distancia</h5>
+          <input type="text" class="slider" name="search_distance" id="search-distance">
+        </div>
+        <div style="float: right; margin-right: 10%">
+          <h5>Empresa</h5>
+          <input type="text" placeholder="Empresa" id="search-company" name="search_company">
+          <br>
+          <h5>Fecha de comienzo</h5>
+          <input type="text" class="datepicker" placeholder="dd/mm/yyyy" id="search-date" name="search_date"><br>
+          <h5>Sólo recomendados</h5>
+          <input type="checkbox" id="search-recomendations" class="switch" name="search_recomendations">
+          <input type="text" id="latitude" name="latitude" style="display: none">
+          <input type="text" id="longitude" name="longitude" style="display: none">
+          <button onclick="submitSearch()">Buscar</button>
+          <br>
+          <br>
+        </div>
     <% end %>
   </div>
   <div class="row">
-
-    <!-- 	/* solapa --------------------------- */-->
+    <!-- /* solapa --------------------------- */-->
     <%if @offers.empty?%>
         <%if @user.company? %>
             <div id="main-content" class="span8 center">
@@ -71,18 +65,13 @@
             </div>
         <%end%>
     <% else %>
-
         <% i =0 %>
         <% @offers.each do |offer| %>
-
             <% if i%3 == 0 %>
-
                 <div class="row">
-
             <%end%>
-
             <div class="span4 offer-small rounded-borders">
-              <!-- 	/* solapa --------------------------- */-->
+              <!-- /* solapa --------------------------- */-->
               <ul class="flap-items">
                 <li class="img_item">
                   <div class="caption">
@@ -90,7 +79,6 @@
                       <li class="offer-disccount"><%= "-" + offer.prizes.first.discount_percentage.to_i.to_s + "%" unless offer.prizes.first.nil?%> </li>
                       <li class="offer-price">$<%= offer.prizes.first.discounted_price unless offer.prizes.first.nil? %></li>
                     </ul>
-
                     <%if offer.start_date.to_date < Date.current and offer.end_date.to_date > Date.current%>
                         <ul class="time-left pull-left">
                           <li>
@@ -100,7 +88,6 @@
                           </li>
                           <li><p>Aprovechala!</p></li>
                         </ul>
-
                     <%elsif offer.start_date.to_date < Date.current and offer.end_date.to_date < Date.current%>
                         <ul class="time-left pull-left">
                           <li>
@@ -124,21 +111,18 @@
                         </ul>
                     <%end%>
                     <!-- End of .flap-items -->
-                    <!-- 	/* solapa --------------------------- */-->
+                    <!-- /* solapa --------------------------- */-->
                     <ul class="secondary-info pull-right">
                       <li>
                         <h3> <%= offer.clients.count %> </h3><p>Usuarios Inscriptos</p>
                       </li>
                     </ul>
                   </div>
-
                   <% unless offer.photo.nil? %>
                       <img class="small-photo rounded-borders-top" src="<%= offer.photo %>" alt="" />
                   <%end%>
                 </li>
               </ul>
-
-
               <div class="row">
                 <div class="span4" style="position:relative;">
                   <img src="../assets/arrow-opentab.jpg" class="button-arrow">
@@ -158,30 +142,16 @@
                 </div><!--end span4-->
               </div><!--end row-->
             </div><!--end span4-->
-
-
-
             <% i += 1 %>
             <% if i%3 == 0 %>
-
                 </div>
-
             <%end%>
-
         <% end %>
-
     <% end %>
-
-
-
   </div>
-
 </div><!--end row-->
 </div><!--end container-->
-
-
 <% @offers.each do |offer| %>
-
     <div id="offer_<%=offer.id%>" class="modal modal-window hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -209,43 +179,30 @@
             <b>Clientes adheridos: </b>
             <%= offer.clients.count %>
           </p>
-
-
           </hr>
-
           <hr>
           <p class="row">
-          <div class="span3">  <b>Premio: </b>
+          <div class="span3"> <b>Premio: </b>
             <ul class="text-left">
               <% i=1 %>
               <% offer.prizes.each do |prize| %>
                   <li type="disc"><%= i %>) <%= prize.name %> - <%= prize.real_price %>(<%= prize.discount_percentage %>).</li>
                   <% i+=1 %>
               <%end%>
-
             </ul>
-
-
           </div>
           <div class="span3"> <b>Sucursal: </b>
             <ul class="text-left">
               <li type="disc"> <%= offer.branch.name unless offer.branch.nil?%></li>
-
-
             </ul>
           </div>
           </p>
           </hr>
-
           <%= link_to 'Incribir', users_inscribe_path(:offer_id => offer.id), { :type =>"button", :class => "btn btn-dealhunter medium full-width", :method => :post, } %>
-
           </hr>
-
         </div>
-
       </div>
     </div>
-
 <%end%>
 
 <!--Initialize switches-->
@@ -261,17 +218,15 @@
         value: [0, 100],
         step: 10
     }).on('slide', function(ev){
-        //Set the value for the min and the max
 
+//Set the value for the min and the max
     });
-
     $("#search-distance").slider({
         max: 1000,
         value: 100,
         step: 10
     });
 </script>
-
 <!--Initialize datepickeres-->
 <script rel="script" type="text/javascript">
     //Documentation -> http://www.eyecon.ro/bootstrap-datepicker/
@@ -279,20 +234,27 @@
         format: "dd/mm/yyyy"
     });
 </script>
-
 <!--Set the current location-->
 <script rel="script" type="text/javascript">
 </script>
 
 <script type="text/javascript" charset="utf-8">
-  function submitSearch() {
-      navigator.geolocation.getCurrentPosition(function (position) {
-          var lat = position.coords.latitude;
-          var long = position.coords.longitude;
 
-          $("latitude").val(lat);
-          $("longitude").val(long);
-      });
-      $("search-form").form().submit();
-  }
+    var lat = document.getElementById("latitude");
+    var long = document.getElementById("longitude");
+
+    function submitSearch() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        }
+        $("search-form").form().submit();
+    }
+
+    function setPosition(position) {
+        alert(position.coords.latitude)
+        lat.value = position.coords.latitude;
+        long.value = position.coords.longitude;
+//        $("#latitude").val(position.coords.latitude);
+//        $("#longitude").val(position.coords.longitude);
+    }
 </script>

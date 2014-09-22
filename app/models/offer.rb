@@ -22,7 +22,6 @@ class Offer < ActiveRecord::Base
 
   acts_as_gmappable
 
-
   def has_prizes
     errors.add(:base, 'must add at least one prize') if self. prizes.blank?
   end
