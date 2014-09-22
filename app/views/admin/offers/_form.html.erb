@@ -1,0 +1,42 @@
+#encoding: utf-8
+
+<%= semantic_nested_form_for [:admin, @offer] do |f|%>
+
+    <div>
+      <%=f.inputs "Info de Oferta" do%>
+          <%=f.input :name %>
+          <%=f.input :branch %>
+          <%=f.input :publication_date, :as=> :date %>
+          <%=f.input :start_date, :as=> :date %>
+          <%=f.input :end_date, :as=> :date%>
+          <%=f.input :photo %>
+
+      <% end %>
+    </div>
+
+
+    <% f.object.prizes.build unless !f.object.prizes.blank? %>
+    <%= f.semantic_fields_for :prizes do |o| %>
+        <%= o.inputs "Premio" do %>
+            <%= o.input :name %>
+            <%= o.input :real_price %>
+            <%= o.input :discount_percentage %>
+            <%= o.link_to_remove "Eliminar", :class => "button_remove" %>
+        <% end %>
+    <% end %>
+    <div id="add_prize">
+      <%= f.link_to_add "Agregar Premio", :prizes, :class => "button" %>
+    </div>
+
+
+
+
+    <%= f.actions do %>
+        <%= f.action :submit %>
+        <li class="cancel">
+          <%=link_to "cancelar", admin_offers_path%>
+        </li>
+    <% end %>
+
+
+<% end%>

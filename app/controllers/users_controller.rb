@@ -1,48 +1,41 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
+
+# GET /users
+# GET /users.json
   def index
     session[:body]='page-micuenta'
     @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
   end
-
-  # GET /users/1
-  # GET /users/1.json
+# GET /users/1
+# GET /users/1.json
   def show
     session[:body]='page-micuenta'
-
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
   end
-
-  # GET /users/new
-  # GET /users/new.json
+# GET /users/new
+# GET /users/new.json
   def new
     @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
     end
   end
-
-  # GET /users/1/edit
+# GET /users/1/edit
   def edit
     session[:body]='page-micuenta'
     @user = User.find(params[:id])
   end
-
-  # POST /users
-  # POST /users.json
+# POST /users
+# POST /users.json
   def create
     session[:body]='page-micuenta'
     @user = User.new(params[:user])
@@ -60,35 +53,32 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # PUT /users/1
-  # PUT /users/1.json
+# PUT /users/1
+# PUT /users/1.json
   def update
-
     @user = User.find(params[:id])
     respond_to do |format|
-    if @user.user_role_id == 2
-
-      client = @user.client
-      client_attr = params[:user][:client_attributes]
-      unless client_attr.nil?
-        address_attr = client_attr[:address_attributes]
-        client.first_name = client_attr[:first_name]
-        client.last_name = client_attr[:last_name]
-        address = Address.new
-        address = client.address unless client.address.nil?
-        address.street = address_attr[:street]
-        address.floor = address_attr[:floor]
-        address.state = address_attr[:state]
-        address.number = address_attr[:number]
-        address.city = address_attr[:city]
-        address.country_id = address_attr[:country_id]
-        address.client_id = client.id
-        address.save
-        client.address = address
-        client.save
+      if @user.user_role_id == 2
+        client = @user.client
+        client_attr = params[:user][:client_attributes]
+        unless client_attr.nil?
+          address_attr = client_attr[:address_attributes]
+          client.first_name = client_attr[:first_name]
+          client.last_name = client_attr[:last_name]
+          address = Address.new
+          address = client.address unless client.address.nil?
+          address.street = address_attr[:street]
+          address.floor = address_attr[:floor]
+          address.state = address_attr[:state]
+          address.number = address_attr[:number]
+          address.city = address_attr[:city]
+          address.country_id = address_attr[:country_id]
+          address.client_id = client.id
+          address.save
+          client.address = address
+          client.save
+        end
       end
-    end
       if @user.update_attribute(:email,params[:user][:email])
         sign_in(@user, :bypass => true)
         format.html { redirect_to edit_user_path(@user), notice: 'Se han registrado los cambios en su perfil.' }
@@ -99,29 +89,24 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
+# DELETE /users/1
+# DELETE /users/1.json
   def destroy
     session[:body]='page-micuenta'
     @user = User.find(params[:id])
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end
-
   def offers_company_user
     session[:body]='page-micuenta'
     @user = current_user
-
     @offers = Offer.where(:branch_id => Branch.where(:company_id => @user.company.id)).page(params[:page]).per(3)
     @actual_offers = Offer.actual.where(:branch_id => Branch.where(:company_id => @user.company.id)).page(params[:page]).per(3)
     @old_offers = Offer.ended.where(:branch_id => Branch.where(:company_id => @user.company.id)).page(params[:page]).per(3)
   end
-
   def offers_client_user
     session[:body]='page-micuenta'
     @user = current_user
@@ -129,12 +114,9 @@ class UsersController < ApplicationController
     @actual_offers = current_user.client.offers.actual.page(params[:page]).per(3)
     @old_offers = current_user.client.offers.ended.page(params[:page]).per(3)
   end
-
   def titles_user
     @user = current_user
-
   end
-
   def save_titles_user
     @user = current_user
     titles = params[:title_ids]
@@ -154,19 +136,16 @@ class UsersController < ApplicationController
       end
     end
     redirect_to users_titles_user_path, :notice => "Se han guardado sus intereses"
-
   end
-
   def branches_company_user
     session[:body]='page-micuenta'
     @user = current_user
     @branches = Branch.where("company_id = ?",@user.company.id).page(params[:page]).per(4)
     @e = params[:e]
   end
-
   def home
     if current_user.company?
-       redirect_to users_home_view_path
+      redirect_to users_home_view_path
     end
   end
 
@@ -177,7 +156,7 @@ class UsersController < ApplicationController
     if @user.company?
       @offers = Offer.actual.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).order("created_at DESC").take(6)
     else
-      current_client =  current_user.client.id
+      current_client = current_user.client.id
       offers=Array.new
       Offer.actual.each do |offer|
         if offer.weight(current_client)>0
@@ -185,7 +164,28 @@ class UsersController < ApplicationController
         end
       end
       @offers=offers.sort_by {|e| e.get_current_weight}.reverse
-
+    end
+# Filter
+    price_range = params[:search_price]
+    min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
+    max_price = price_range != nil ? price_range.split(/,/).at(1).to_i : 1000
+    max_distance = params[:search_distance].to_i
+    longitude = params[:longitude].to_i
+    latitude = params[:latitude].to_i
+    @offers.delete_if do |offer|
+      !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
+          offer.title.name != params[:search_title] || # Filter by title
+          offer.start_date < Date._parse(params[:search_date], "%d/%m/%Y") || # Filter by date
+          offer.prizes.get(0).real_price > max_price || # Filter by max price
+          offer.prizes.get(0).real_price < min_price # Filter by min price
+      max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
+    end
+#Filter by recomendation
+    recomendations_only = params[:search_recomendations]=="on"? true : false
+    if recomendations_only
+      @offers.delete_if do |offer|
+        offer.weight < 1
+      end
     end
   end
 
@@ -200,7 +200,6 @@ class UsersController < ApplicationController
       @offers = Offer.actual.where(:id => OffersTitles.select("offer_id").where(:title_id => clients_titles)).all
     end
   end
-
   def home_map
     @user = current_user
     @offers = Array.new
@@ -214,27 +213,25 @@ class UsersController < ApplicationController
         @longitude = address.longitude
         @latitude = address.latitude
       end
-      #Mostrar solo los que interesen
-      #@json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
+#Mostrar solo los que interesen
+#@json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
     else if @user.user_role_id == 1
-      address = @user.company.branches.first.address
-      @json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
-    end
+           address = @user.company.branches.first.address
+           @json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
+         end
     end
     unless address.nil?
       @latitude = address.latitude
       @longitude = address.longitude
     end
   end
-
   def inscribe
     offer_id = params[:offer_id]
     client_id = Client.where(:user_id => current_user.id).first.id
     clients_offers = ClientsOffer.new
     clients_offers.client_id = client_id
     clients_offers.offer_id = offer_id
-
-    #ponderar clients_titles
+#ponderar clients_titles
     offer = Offer.find(params[:offer_id])
     offer.titles.each do|t|
       client_title = ClientsTitles.where(:client_id => client_id, :title_id => Title.select(:id).where(:id => t.id)).first()
@@ -243,8 +240,7 @@ class UsersController < ApplicationController
         client_title.save
       end
     end
-
-    #ponderar clients_companies
+#ponderar clients_companies
     company_id = Branch.where(:id => offer.branch_id).first().company_id
     clients_companies = ClientsCompany.where(:client_id => client_id, :company_id => company_id).first
     if clients_companies.nil?
@@ -256,17 +252,14 @@ class UsersController < ApplicationController
       clients_companies.weight += 1
     end
     clients_companies.save
-
     if clients_offers.save
       redirect_to offer_path(Offer.find_by_id(offer_id))
     end
   end
-
   def unsubscribe
     clients_offers = ClientsOffer.find(params[:clients_offers_id])
     client_id = Client.where(:user_id => current_user.id).first.id
-
-    #ponderar clients_titles
+#ponderar clients_titles
     offer = Offer.find(clients_offers.offer_id)
     offer.titles.each do|t|
       client_title = ClientsTitles.where(:client_id => client_id, :title_id => Title.select(:id).where(:id => t.id)).first()
@@ -275,21 +268,15 @@ class UsersController < ApplicationController
         client_title.save
       end
     end
-
-
-    #ponderar clients_companies
+#ponderar clients_companies
     company_id = Branch.where(:id => offer.branch_id).first().company_id
     clients_companies = ClientsCompany.where(:client_id => client_id, :company_id => company_id).first
     clients_companies.weight -= 1
     clients_companies.save
-
-
-
     if clients_offers.destroy
       redirect_to offer_path(Offer.find_by_id(params[:offer_id]))
     end
   end
-
   def change_newsletter_frequency
     session[:body]='page-micuenta'
     if !params[:user].nil?
@@ -298,10 +285,7 @@ class UsersController < ApplicationController
         redirect_to :back, :notice => "Se ha cambiado correctamente la frecuencia del newsletter"
       end
     end
-
   end
-
-
   def statistics
     @user = current_user
     @months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
@@ -312,10 +296,8 @@ class UsersController < ApplicationController
       @titles = titles_data
       @activity = activity_data
     end
-
     puts '@user'
   end
-
   def titles_data
     titles = Hash.new
     Title.all.each do |t|
@@ -332,7 +314,6 @@ class UsersController < ApplicationController
     end
     return titles
   end
-
   def activity_data
     amounts = Array.new
     @months.each do |m|
@@ -348,7 +329,6 @@ class UsersController < ApplicationController
     end
     return amounts
   end
-
   def offers_data
     offers = Array.new
     @months.each do |m|
@@ -366,7 +346,6 @@ class UsersController < ApplicationController
     end
     return offers
   end
-
   def comp_data
     comp = Hash.new
     Title.all.each do |t|
@@ -384,5 +363,18 @@ class UsersController < ApplicationController
       end
     end
     return comp
+  end
+  private
+  def getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2)
+    radius = 6371 # Radius of the earth in km
+    dLat = deg2rad(lat2-lat1) # deg2rad below
+    dLon = deg2rad(lon2-lon1);
+    a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2)
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    d = radius * c; # Distance in km
+    return d
+  end
+  def deg2rad(deg)
+    return deg * (Math.PI/180)
   end
 end

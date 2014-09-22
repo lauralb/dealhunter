@@ -26,6 +26,8 @@ gem 'whenever', git: 'git://github.com/Insomniware/whenever.git', :require => fa
 
 gem "fog"
 
+gem 'unf'
+
 gem 'jquery-rails'
 
 gem 'activeadmin'
@@ -45,6 +47,8 @@ gem 'bootstrap-sass'
 gem "kaminari"
 
 gem 'gmaps4rails', '1.5.3'
+
+# gem 'geocoder'
 
 gem 'eventmachine'
 

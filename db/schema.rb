@@ -131,14 +131,15 @@ ActiveRecord::Schema.define(:version => 20140922202803) do
 
   create_table "offers", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "photo"
     t.integer  "branch_id"
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "gmaps"
+    t.date     "publication_date"
   end
 
   create_table "offers_titles", :force => true do |t|

@@ -5,7 +5,7 @@ class Address < ActiveRecord::Base
   belongs_to :branch, :dependent => :destroy
   belongs_to :country
 
-  attr_accessible :city, :country_id, :country, :floor, :number, :state, :street, :client_id, :branch_id, :address, :longitude, :latitude
+  attr_accessible :city, :country_id, :country, :floor,:gmaps, :number, :state, :street, :client_id, :branch_id, :address, :longitude, :latitude
 
   acts_as_gmappable
 

@@ -1,0 +1,16 @@
+div.container{
+    text-align: center;
+    width: 600px;
+    background: #ffff00;
+}
+body{
+    margin: 0;
+    background-image: url("http://www.animatedimages.org/data/media/137/animated-clock-image-0004.gif");
+}
+div.centered{
+    display: block;
+    margin: auto;
+}
+div.hidden, input.hidden{
+    display: none;
+}

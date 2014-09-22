@@ -6,7 +6,7 @@ class Offer < ActiveRecord::Base
   has_and_belongs_to_many :titles
   belongs_to :branch
 
-  attr_accessible :gmaps, :name, :photo, :branch_id, :prizes_attributes, :description, :titles
+  attr_accessible :gmaps, :name, :photo, :branch_id, :prizes_attributes, :description, :titles, :publication_date
   attr_accessible :start_date, :end_date
   attr_accessor :current_weight
 
@@ -14,13 +14,17 @@ class Offer < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  validates_presence_of :name, :start_date, :end_date
-  validate :time_coherence
+  validates_presence_of :name, :start_date, :end_date, :publication_date, :branch, :branch_id
+  validate :time_coherence, :has_prizes
 
   scope :ended, Offer.where('end_date < ?', Date.today)
   scope :actual, Offer.where('end_date >= ?', Date.today)
 
   acts_as_gmappable
+
+  def has_prizes
+    errors.add(:base, 'must add at least one prize') if self. prizes.blank?
+  end
 
   def get_current_weight
     if current_weight.nil? then return 0  end

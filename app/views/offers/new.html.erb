@@ -19,7 +19,7 @@
                       <div class="wrapper">
                         <article class="row">
                           <% Title.all.each do |p2| %>
-                              <% if (p2.id== 1 || p2.id==5 || p2.id==9) %>
+                              <!--<% if (p2.id== 1 || p2.id==5 || p2.id==9) %>-->
                                   <div class="row">
                                     <div class="wrapper-padding">
                               <% end %>
@@ -65,6 +65,10 @@
           <div class="control-group clearfix">
             <label class="pull-left" for="inputEmail">Nombre</label>
             <%= f.input :name, :label => false, :input_html => {:class => "pull-right input-medium", :placeholder => "Nombre"} %>
+          </div>
+          <div class="control-group clearfix">
+            <label class="pull-left" for="inputEmail">Fecha de public...</label>
+            <%= f.input :publication_date, :as => :string, :input_html => {:class => 'datepicker pull-right input-medium datepicker'}, :label => false %>
           </div>
           <div class="control-group clearfix">
             <label class="pull-left" for="inputEmail">Fecha de inicio</label>

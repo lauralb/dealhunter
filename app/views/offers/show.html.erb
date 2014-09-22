@@ -81,19 +81,68 @@
 
         </div>
 
-
         <div class="tab-pane" id="mapas" align="center">
+          <%= gmaps("map_options" => {
+                                       "center_on_user" => true,
+                                       "auto_adjust" => true,
+                                       "auto_zoom" => false,
+                                       "frameborder"=> true},
+                    "markers" => {
+                            "data" => @json
+                    })
 
-          <%=  gmaps("map_options" => {
-               "zoom" => 13,
-                 "center_latitude" => @latitude,
-                 "center_longitude" => @longitude,
-                 "auto_adjust" => true,
-          }, "markers" => {"data" => @json}) %>
+          %>
+          <% content_for :scripts do %>
 
+              <script type="text/javascript">
+                  $().ready(function () {
+
+                      function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+                          var R = 6371000; // Radius of the earth in m
+                          var dLat = deg2rad(lat2-lat1);  // deg2rad below
+                          var dLon = deg2rad(lon2-lon1);
+                          var a =
+                                          Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                                          Math.sin(dLon/2) * Math.sin(dLon/2)
+                                  ;
+                          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                          var d = R * c; // Distance in m
+                          return d;
+                      }
+                      function deg2rad(deg) {
+                          return deg * (Math.PI/180)
+                      }
+                      Gmaps.map.geolocationSuccess = function() {
+                          Gmaps.map.createMarker({Lat: Gmaps.map.userLocation.lat(),
+                              Lng: Gmaps.map.userLocation.lng(),
+                              rich_marker: null,
+                              marker_picture: ""
+                          });
+                          var user_id = "<%= current_user.id %>";
+                          $.ajax({
+                              url: "http://localhost:3000/users/"+user_id+"/address",
+                              data: {
+                                  lat : Gmaps.map.userLocation.lat(),
+                                  lng : Gmaps.map.userLocation.lng()
+                              },
+                              type: "POST",
+                              beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+                          });
+                          var origin = new google.maps.LatLng(Gmaps.map.userLocation.lat(), Gmaps.map.userLocation.lng());
+                          var distance;
+
+                          for(var i = 0; i<Gmaps.map.markers.length;i++){
+                              distance = getDistanceFromLatLonInKm(Gmaps.map.userLocation.lat(), Gmaps.map.userLocation.lng(), Gmaps.map.markers[i].lat, Gmaps.map.markers[i].lng)/1000;
+                              Gmaps.map.markers[i].infowindow.content = Gmaps.map.markers[i].infowindow.content + Math.round(distance*100)/100 + " kms"
+                          }
+
+                      }
+
+                  })
+              </script>
+          <% end %>
         </div>
-
-
 
         <div class="tab-pane" id="clients">
           <h5> Los clientes que se han inscripto son: </h5>
