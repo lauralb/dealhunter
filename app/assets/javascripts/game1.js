@@ -15,5 +15,8 @@ function formatTime(time){
     } else {
         return timeString;
     }
+}
 
+function displayFinal (){
+    window.location.replace("results?timer=" + seconds);
 }

@@ -26,7 +26,7 @@
 .numero{
     font-size: 2em;
     color: #FF9900;
-    margin-left: 200%;
+    margin-left: 500%;
 }
 
 #resGral{
@@ -36,8 +36,10 @@
     left: 75%;
 }
 
+
 .wrapper-text{
     margin-top: 15%;
     margin-bottom: 15%;
-    display: block;
+    display: flex;
 }
+
