@@ -38,6 +38,8 @@ body, html{
     height: 70PX;
     width: 120PX;
     box-shadow: 7px 5px 9px grey;
+    background-color: rgb(250,100,100) !important;
+    border-color: rgb(280,120,120) !important;
 }
 
 #deal-tionary{

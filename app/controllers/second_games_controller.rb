@@ -6,4 +6,9 @@ class SecondGamesController < InheritedResources::Base
   def result
 
   end
+
+  def start
+
+  end
+
 end

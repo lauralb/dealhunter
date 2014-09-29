@@ -12,6 +12,7 @@ DealHunter::Application.routes.draw do
   resources :newsletter_frequencies
 
 
+  match 'second_games/start' => 'second_games#start'
   match 'second_games/results' => 'second_games#results'
   match 'second_games/index' => 'second_games#index'
   match 'auth/:provider/callback', to:'session#create'
