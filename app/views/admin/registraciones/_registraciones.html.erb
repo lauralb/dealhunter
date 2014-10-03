@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+
+<body>
+<div class="wrapper-padding">
+
+  <div class="wrapper">
+    <article>
+
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#empresas" data-toggle="tab">Empresas</a></li>
+        <li><a href="#clientes" data-toggle="tab">Clientes</a></li>
+      </ul>
+
+      <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane active " id="empresas">
+
+          <label class="pull-left"><h5>Registraciones de empresas por mes de este año</h5></label>
+
+          <div id="empresasChart" style="height: 310px;"></div>
+
+        </div>
+        <!--end myTabContent-->
+
+        <div class="tab-pane active" id="clientes">
+
+          <label class="pull-left"><h5>Registraciones de clientes por mes de este año</h5></label>
+
+          <div id="clientesChart" style="height: 310px;"></div>
+
+        </div>
+        <!--end myTabContent-->
+
+      </div>
+
+    </article>
+
+  </div>
+  <!--end wrapper-->
+</div>
+
+
+</body>
+<script>
+
+    //EMPRESA
+    new Morris.Bar({
+        element: 'empresasChart',
+        data: [
+                <% @comp_registrations.each do |a| %>
+            { y:'<%= a[0]%>', a:<%= a[1]%> },
+                <% end %>
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Empresas'],
+        barColors: ['orange']
+    });
+
+    //CLIENTE
+    new Morris.Bar({
+        element: 'clientesChart',
+        data: [
+            <% @client_registrations.each do |a| %>
+            { y:'<%= a[0]%>', a:<%= a[1]%> },
+            <% end %>
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Clientes'],
+        barColors: ['orange']
+    });
+
+</script>

@@ -5,7 +5,7 @@ class ClientsOffersController < ApplicationController
     @clientsOffers = ClientsOffers.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.erb.erb
       format.json { render json: @clientsOffers }
     end
   end

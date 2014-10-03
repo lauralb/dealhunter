@@ -52,6 +52,8 @@ gem 'gmaps4rails', '1.5.3'
 
 gem 'eventmachine'
 
+gem 'koala'
+
 gem 'omniauth'
 
 gem 'devise'

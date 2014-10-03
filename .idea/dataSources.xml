@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="59570217">
-    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="3e725294-dcaf-4e98-a99e-19430b1396a4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1681761755">
+    <data-source source="LOCAL" name="Rails dealhunter: development" uuid="c76472f8-8cff-49ba-accb-93ed1c873a0c">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
-      <libraries />
-    </data-source>
-    <data-source source="LOCAL" name="Rails dealhunter: production" uuid="efb3144b-7c5e-4042-a9a5-580a9c9dd37a">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/production.sqlite3</jdbc-url>
       <libraries />
     </data-source>
   </component>

@@ -8,6 +8,7 @@
   <div class="row" style="background: #ffffff">
     <h1 style="text-align: center">Buscar</h1>
     <%= form_tag(:id => 'search-form') do %>
+
         <div style="float: left; margin-left:10% ">
           <h5>Interés</h5>
           <select id="search-title" name="search_title">
@@ -203,11 +204,13 @@
       </div>
     </div>
 <%end%>
+
 <!--Initialize switches-->
 <script rel="script" type="text/javascript">
     //Documentation -> /assets/bootstrap-switch-master
     $(".switch").bootstrapSwitch();
 </script>
+
 <!--Initialize slideres-->
 <script rel="script" type="text/javascript">
     //Documentation -> http://www.eyecon.ro/bootstrap-slider/
@@ -215,6 +218,7 @@
         value: [0, 100],
         step: 10
     }).on('slide', function(ev){
+
 //Set the value for the min and the max
     });
     $("#search-distance").slider({
@@ -235,6 +239,7 @@
 </script>
 
 <script type="text/javascript" charset="utf-8">
+
     var lat = document.getElementById("latitude");
     var long = document.getElementById("longitude");
 

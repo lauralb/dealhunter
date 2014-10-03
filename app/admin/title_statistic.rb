@@ -1,4 +1,6 @@
-ActiveAdmin.register_page "title_statistic" do
+ActiveAdmin.register_page "Intereses" do
+
+  menu :parent => "Estadisticas"
 
   content do
     render partial: "interest_statistics"

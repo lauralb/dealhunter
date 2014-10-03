@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20140922202803) do
     t.datetime "end_date"
     t.string   "gmaps"
     t.date     "publication_date"
+    t.boolean  "publicated"
   end
 
   create_table "offers_titles", :force => true do |t|

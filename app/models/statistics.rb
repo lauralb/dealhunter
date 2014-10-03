@@ -49,4 +49,19 @@ class Statistics
     offers_per_month
   end
 
+  def Statistics.clientes_offers_per_month
+    clients_offers_per_month = Array.new
+    months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    months.each do |m|
+      clients_offers_per_month.push([m, 0])
+    end
+    client_offers = ClientsOffer.all
+    client_offers.each do |offer|
+      m = offer.created_at.month
+      a = clients_offers_per_month[m-1]
+      a[1] += 1
+    end
+    clients_offers_per_month
+  end
+
 end

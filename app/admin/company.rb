@@ -33,11 +33,17 @@ ActiveAdmin.register Company do
   controller do
     def create
       super
+
+      @user = Koala::Facebook::API.new('CAAV42X5Tty0BAGZA0kIdBxqero47da1ZAJ9fZB3FH59WUg7ZCW1ORb0Tk46eQTkUF8nyvb51z2LznIeRDCRBM9jCTRheZAd4wBHuxcE4vSucIZBt2MzQEiopPKt3AzNmRN2o4S54LTvkumBjWLHZA8cIMkKwlUENb6Vd4cBnmiOmi1GXhJd1ZAEqWOZALxBlvzNwZD')
+      page_access_token = @user.get_connections('me', 'accounts').first['access_token'] #this gets the users first page.
+      @page = Koala::Facebook::API.new(page_access_token)
+
       unless @company.user.nil?
         role_id = UserRole.where(:name => "CompanyUser").first().id
         @company.user.user_role_id = role_id
         @company.save!
         NewUserMailer.new_user_email(@company.user, @company).deliver
+        @page.put_object('1474232979498488','feed', :message => @company.name + " fue creada!")
       end
     end
 

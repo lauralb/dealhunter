@@ -1,4 +1,5 @@
 class FirstGamesController < InheritedResources::Base
+
   def show
     @questions = Question.all
 
@@ -11,4 +12,14 @@ class FirstGamesController < InheritedResources::Base
   def question_mockups
 
   end
+
+  def index
+
+  end
+
+  def results
+
+  end
+
 end
+

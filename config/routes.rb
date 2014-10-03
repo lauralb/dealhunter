@@ -1,13 +1,27 @@
 DealHunter::Application.routes.draw do
 
+  get "sessions/create"
+
+  get "sessions/destroy"
+
+  get "home/show"
+
   resources :clients_companies
 
 
   resources :newsletter_frequencies
 
+  match 'auth/:provider/callback', to:'session#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
+
 
   match 'first_games/show' => 'first_games#show'
   match 'first_games/question_mockups' => 'first_games#question_mockups'
+
+  match 'first_games/index' => 'first_games#index'
+  match 'first_games/results' => 'first_games#results'
+
   match 'pages/work_with_us' => 'pages#work_with_us'
   match 'pages/form_company' => 'pages#form_company'
   match 'pages/faqs' => 'pages#faqs'
@@ -37,7 +51,6 @@ DealHunter::Application.routes.draw do
   match 'offers/save_results' => 'offers#save_results'
 
   match 'users/statistics' => 'users#statistics'
-
 
   root :to => "users#home"
 
@@ -128,7 +141,7 @@ DealHunter::Application.routes.draw do
   #   end
 
   # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
+  # just remember to delete public/index.html.erb.
   # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
