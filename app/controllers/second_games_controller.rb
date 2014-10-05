@@ -6,4 +6,8 @@ class SecondGamesController < InheritedResources::Base
   def result
 
   end
+
+  def show
+
+  end
 end

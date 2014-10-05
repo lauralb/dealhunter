@@ -193,6 +193,36 @@ class UsersController < ApplicationController
     end
   end
 
+    i1 = ImageQuestions.new(url:"http://img.ecologiahoy.com/2012/08/Vapor-de-agua.jpg", answer:"steam")
+    i2 = ImageQuestions.new(url:"http://www.howtoquitsmokingweedblog.com/wp-content/uploads/2012/12/What_Happens_When_You_Stop_Smoking_Weed.jpeg",answer: "Weed")
+    i3 = ImageQuestions.new(url:"http://www.slate.com/content/dam/slate/articles/technology/technology/2012/03/120315_TECH_encyclopediaB.jpg.CROP.original-original.jpg", answer:"Encyclopedia")
+    i4 = ImageQuestions.new(url:"http://static.giantbomb.com/uploads/original/0/25/11333-age-of-empire-3-warchiefs.jpg", answer:"Age")
+    i5 = ImageQuestions.new(url:"http://upload.wikimedia.org/wikipedia/commons/d/de/Swimming_at_the_2008_Summer_Paralympics_-_women_Freestyle_swimming.jpg", answer:"Swimming")
+    i6 = ImageQuestions.new(url:"http://www.lucyandmaeve.com/images/punctuation/semicolon-main.jpg",answer: "Semicolon")
+    i7 = ImageQuestions.new(url: "http://upload.wikimedia.org/wikipedia/en/5/56/The_Appeal_John_Grisham_Novel.JPG",answer: "Appeal")
+    i8 = ImageQuestions.new(url:"http://wctmedicalservices.org/wp-content/uploads/2013/12/Chin-Augmentation-Face.jpg", answer:"Chin")
+    i9 = ImageQuestions.new(url:"http://www.esquire.com/cm/esquire/images/lF/esq-jeans-081512-xlg.jpg",answer: "Jeans")
+    i10 = ImageQuestions.new(url:"http://www.kidsmathgamesonline.com/images/pictures/shapes/octagon.jpg", answer:"Octagon")
+    i11= ImageQuestions.new(url:"http://www.mobydisk.com/mobydisk/hanggliding/big/hang_glider.jpg",answer: "Glider")
+    i12 = ImageQuestions.new(url:"http://nicktyrone.com/wp-content/uploads/2014/08/cougar-2.jpg", answer:"Cougar")
+    i13 = ImageQuestions.new(url:"http://static.betazeta.com/www.sabrosia.com/up/2012/11/three-milkshakes-660x350.jpg", answer:"Milkshake")
+    i14 = ImageQuestions.new(url:"http://www.agr.state.il.us/wp-content/uploads/809Environment_iStock_000006175251Medium.jpg", answer:"Environment")
+
+    i1.save
+    i2.save
+    i3.save
+    i4.save
+    i5.save
+    i6.save
+    i7.save
+    i8.save
+    i9.save
+    i10.save
+    i11.save
+    i12.save
+    i13.save
+    i14.save
+
   end
 
 

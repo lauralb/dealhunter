@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 ruby '1.9.3'
@@ -22,7 +23,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'whenever', git: 'git://github.com/Insomniware/whenever.git', :require => false
+gem 'whenever', git: 'https://github.com/Insomniware/whenever.git', :require => false
 
 gem "fog"
 

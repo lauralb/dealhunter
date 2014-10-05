@@ -16,19 +16,20 @@ div.container{
     width: 600px;
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica,;
 }
 
-div.question h1{
+
+.show-quiz div.question h1{
     color: #061117;
 }
 
-div.img img{
+.show-quiz div.img img{
     height: 300px;
     width: 500px;
 }
 
-div.answer input:focus{
+.show-quiz div.answer input:focus{
     box-shadow: 0 0 5px #a5e7f4;
     border: none;
     padding: 10px;
@@ -37,7 +38,7 @@ div.answer input:focus{
 
 }
 
-div.answer input{
+.show-quiz div.answer input{
     padding: 10px;
     width: 80%;
     border-radius: 5px ;
@@ -45,26 +46,30 @@ div.answer input{
     border: solid 1px #dadada;
 }
 
-div.submit{
+.show-quiz div.timer{
+    color: green;
+}
+
+.show-quiz div.submit{
     margin-bottom: 20px;
 }
 
-div.submit input{
-    background: -webkit-linear-gradient(#20d1ff, #1cb3d9); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#20d1ff, #1cb3d9); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#20d1ff, #1cb3d9); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#20d1ff, #1cb3d9); /* Standard syntax */
+.show-quiz .submit input{
+    background: -webkit-linear-gradient(#20d1ff, #1cb3d9); /* For Safari 5.1 to 6.0 */!important;
+    background: -o-linear-gradient(#20d1ff, #1cb3d9); /* For Opera 11.1 to 12.0 */!important;
+    background: -moz-linear-gradient(#20d1ff, #1cb3d9); /* For Firefox 3.6 to 15 */ !important;
+    background: linear-gradient(#20d1ff, #1cb3d9); /* Standard syntax */!important;
     padding: 5px;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
 }
 
-div.centered{
+.show-quiz div.centered{
     display: block;
     margin: auto;
 }
-div.hidden, input.hidden{
+.show-quiz div.hidden, input.hidden{
     display: none;
 }
 
