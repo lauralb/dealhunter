@@ -7,7 +7,12 @@ class SecondGamesController < InheritedResources::Base
 
   end
 
+
   def show
 
   end
+  def start
+
+  end
+
 end
