@@ -1,25 +1,3 @@
-/*body{*/
-    /*margin: 0;*/
-    /*background: url("http://www.iceflowstudios.com/v3/wp-content/uploads/2013/01/LoadingCircle_finalani.gif") no-repeat;*/
-    /*background-color: #f8f8f8;*/
-    /*background-size: 100%;*/
-    /*background-position: 50% -10%;*/
-/*}*/
-
-/*div.container{*/
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*margin-left: -300px;*/
-    /*margin-top: -10px;*/
-    /*text-align: center;*/
-    /*width: 600px;*/
-    /*background-color: rgba(255, 255, 255, 0.6);*/
-    /*border-radius: 5px;*/
-    /*font-family: Arial, Helvetica,;*/
-/*}*/
-
-
 .show-quiz div.question h1{
     top:50%;
     left: 50%
@@ -47,6 +25,10 @@
     border-radius: 5px ;
     border: solid 1px #dadada;
     margin: 0px 80px;
+}
+
+.show-quiz div.answer button{
+    margin: 5px 195px;
 }
 
 .show-quiz div.timer{
