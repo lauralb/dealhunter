@@ -26,6 +26,7 @@ class SecondGamesController < InheritedResources::Base
   def results
     @time = params[:time].to_i
     @score = params[:score].to_i
+    1+1
   end
 
 end

@@ -10,7 +10,7 @@
   <input type="hidden" id="questions" value="<%=@questions.as_json%>" >
   <div class="container">
     <div class="show-quiz">
-      <form>
+      <%= form_tag "/second_games/results" do %>
         <div class="question">
 
 
@@ -28,14 +28,17 @@
           <h2 id="timer">
             <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
             <input type="text" class="hidden" name="time" id="time">
+            <input type="text" class="hidden" name="score" id="score">
           </h2>
         </div>
         <br>
         <br>
         <div class="submit">
-          <input type="submit" value="Completar">
+            <input type="submit">
         </div>
-      </form>
+          <%= submit_tag %>
+          <% end %>
+
     </div>
   </div>
 </div>

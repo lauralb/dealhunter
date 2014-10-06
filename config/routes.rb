@@ -13,7 +13,6 @@ DealHunter::Application.routes.draw do
 
 
   match 'second_games/show' => 'second_games#show'
-  match 'second_games/start' => 'second_games#start'
   match 'second_games/results' => 'second_games#results'
   match 'second_games/index' => 'second_games#index'
   match 'auth/:provider/callback', to:'session#create'

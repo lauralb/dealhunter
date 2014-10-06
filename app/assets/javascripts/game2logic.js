@@ -31,6 +31,8 @@ $(document).ready(function () {
             score++;
         }
 
+        document.getElementById("score").value = score;
+
         setTimeout(function(){changeQuestion()},1000);
         questionNumber++;
         displayQuestion();
@@ -44,4 +46,5 @@ $(document).ready(function () {
     }//display question
 
 
+    $('#')
 });//doc ready
