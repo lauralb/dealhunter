@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
+
 # GET /users/1
 # GET /users/1.json
   def show
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+
 # GET /users/new
 # GET /users/new.json
   def new
@@ -29,17 +31,19 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+
 # GET /users/1/edit
   def edit
     session[:body]='page-micuenta'
     @user = User.find(params[:id])
   end
+
 # POST /users
 # POST /users.json
   def create
     session[:body]='page-micuenta'
     @user = User.new(params[:user])
-    @user.user_role = UserRole.where("name = ?", "ClientUSer" ).first()
+    @user.user_role = UserRole.where("name = ?", "ClientUSer").first()
     respond_to do |format|
       if @user.save
         @client = Client.new
@@ -53,6 +57,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 # PUT /users/1
 # PUT /users/1.json
   def update
@@ -79,7 +84,7 @@ class UsersController < ApplicationController
           client.save
         end
       end
-      if @user.update_attribute(:email,params[:user][:email])
+      if @user.update_attribute(:email, params[:user][:email])
         sign_in(@user, :bypass => true)
         format.html { redirect_to edit_user_path(@user), notice: 'Se han registrado los cambios en su perfil.' }
         format.json { head :no_content }
@@ -89,6 +94,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 # DELETE /users/1
 # DELETE /users/1.json
   def destroy
@@ -100,6 +106,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def offers_company_user
     session[:body]='page-micuenta'
     @user = current_user
@@ -107,6 +114,7 @@ class UsersController < ApplicationController
     @actual_offers = Offer.actual.where(:branch_id => Branch.where(:company_id => @user.company.id)).page(params[:page]).per(3)
     @old_offers = Offer.ended.where(:branch_id => Branch.where(:company_id => @user.company.id)).page(params[:page]).per(3)
   end
+
   def offers_client_user
     session[:body]='page-micuenta'
     @user = current_user
@@ -114,9 +122,11 @@ class UsersController < ApplicationController
     @actual_offers = current_user.client.offers.actual.page(params[:page]).per(3)
     @old_offers = current_user.client.offers.ended.page(params[:page]).per(3)
   end
+
   def titles_user
     @user = current_user
   end
+
   def save_titles_user
     @user = current_user
     titles = params[:title_ids]
@@ -137,12 +147,14 @@ class UsersController < ApplicationController
     end
     redirect_to users_titles_user_path, :notice => "Se han guardado sus intereses"
   end
+
   def branches_company_user
     session[:body]='page-micuenta'
     @user = current_user
-    @branches = Branch.where("company_id = ?",@user.company.id).page(params[:page]).per(4)
+    @branches = Branch.where("company_id = ?", @user.company.id).page(params[:page]).per(4)
     @e = params[:e]
   end
+
   def home
     if current_user.company?
       redirect_to users_home_view_path
@@ -156,72 +168,96 @@ class UsersController < ApplicationController
     if @user.company?
       @offers = Offer.actual.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).order("created_at DESC").take(6)
     else
-      current_client = current_user.client.id
-      offers=Array.new
-      Offer.actual.each do |offer|
-        if offer.weight(current_client)>0
-          offers.append(offer)
-        end
-      end
-      @offers=offers.sort_by {|e| e.get_current_weight}.reverse
+      # TODO check why it isn't working
+      # current_client = current_user.client.id
+      # offers=Array.new
+      # Offer.actual.each do |offer|
+      #   if offer.weight(current_client)>0
+      #     offers.append(offer)
+      #   end
+      # end
+      # @offers=offers.sort_by { |e| e.get_current_weight }.reverse
     end
 
-  if !params[:id].nil?
+    if !params[:id].nil?
 
 # Filter
-    price_range = params[:search_price]
-    min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
-    max_price = price_range != nil ? price_range.split(/,/).at(1).to_i : 1000
-    max_distance = params[:search_distance].to_i
-    longitude = params[:longitude].to_i
-    latitude = params[:latitude].to_i
+      price_range = params[:search_price]
+      min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
+      max_price = price_range != nil ? price_range.split(/,/).at(1).to_i : 1000
+      max_distance = params[:search_distance].to_i
+      longitude = params[:longitude].to_i
+      latitude = params[:latitude].to_i
 
-    @offers.delete_if do |offer|
-      !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
-        !(offer.has_title(params[:search_title])) || # Filter by title
-        offer.start_date < Date.parse(params[:search_date], "%d/%m/%Y") || # Filter by date
-        offer.prizes[0].discounted_price > max_price || # Filter by max price
-        offer.prizes[0].discounted_price < min_price # Filter by min price
-        #max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
-    end
-#Filter by recomendation
-    recomendations_only = params[:search_recomendations]=="on"? true : false
-    if recomendations_only
       @offers.delete_if do |offer|
-        offer.weight < 1
+        !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
+            !(offer.has_title(params[:search_title])) || # Filter by title
+            offer.start_date < Date.parse(params[:search_date], "%d/%m/%Y") || # Filter by date
+            offer.prizes[0].discounted_price > max_price || # Filter by max price
+            offer.prizes[0].discounted_price < min_price # Filter by min price
+        #max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
+      end
+#Filter by recomendation
+      recomendations_only = params[:search_recomendations]=="on" ? true : false
+      if recomendations_only
+        @offers.delete_if do |offer|
+          offer.weight < 1
+        end
       end
     end
-  end
 
-    i1 = ImageQuestions.new(url:"http://img.ecologiahoy.com/2012/08/Vapor-de-agua.jpg", answer:"steam")
-    i2 = ImageQuestions.new(url:"http://www.howtoquitsmokingweedblog.com/wp-content/uploads/2012/12/What_Happens_When_You_Stop_Smoking_Weed.jpeg",answer: "Weed")
-    i3 = ImageQuestions.new(url:"http://www.slate.com/content/dam/slate/articles/technology/technology/2012/03/120315_TECH_encyclopediaB.jpg.CROP.original-original.jpg", answer:"Encyclopedia")
-    i4 = ImageQuestions.new(url:"http://static.giantbomb.com/uploads/original/0/25/11333-age-of-empire-3-warchiefs.jpg", answer:"Age")
-    i5 = ImageQuestions.new(url:"http://upload.wikimedia.org/wikipedia/commons/d/de/Swimming_at_the_2008_Summer_Paralympics_-_women_Freestyle_swimming.jpg", answer:"Swimming")
-    i6 = ImageQuestions.new(url:"http://www.lucyandmaeve.com/images/punctuation/semicolon-main.jpg",answer: "Semicolon")
-    i7 = ImageQuestions.new(url: "http://upload.wikimedia.org/wikipedia/en/5/56/The_Appeal_John_Grisham_Novel.JPG",answer: "Appeal")
-    i8 = ImageQuestions.new(url:"http://wctmedicalservices.org/wp-content/uploads/2013/12/Chin-Augmentation-Face.jpg", answer:"Chin")
-    i9 = ImageQuestions.new(url:"http://www.esquire.com/cm/esquire/images/lF/esq-jeans-081512-xlg.jpg",answer: "Jeans")
-    i10 = ImageQuestions.new(url:"http://www.kidsmathgamesonline.com/images/pictures/shapes/octagon.jpg", answer:"Octagon")
-    i11= ImageQuestions.new(url:"http://www.mobydisk.com/mobydisk/hanggliding/big/hang_glider.jpg",answer: "Glider")
-    i12 = ImageQuestions.new(url:"http://nicktyrone.com/wp-content/uploads/2014/08/cougar-2.jpg", answer:"Cougar")
-    i13 = ImageQuestions.new(url:"http://static.betazeta.com/www.sabrosia.com/up/2012/11/three-milkshakes-660x350.jpg", answer:"Milkshake")
-    i14 = ImageQuestions.new(url:"http://www.agr.state.il.us/wp-content/uploads/809Environment_iStock_000006175251Medium.jpg", answer:"Environment")
+    if ImageQuestion.all.empty?
+      i1 = ImageQuestion.new
+      i1.url = "http://img.ecologiahoy.com/2012/08/Vapor-de-agua.jpg"
+      i1.question = "What the name for this?"
+      i1.answer = "steam"
+      i1.save
 
-    i1.save
-    i2.save
-    i3.save
-    i4.save
-    i5.save
-    i6.save
-    i7.save
-    i8.save
-    i9.save
-    i10.save
-    i11.save
-    i12.save
-    i13.save
-    i14.save
+      i2 = ImageQuestion.new
+      i2.url = "http://www.brandfinance.com/images/flags/large/nl.png"
+      i2.question = "From which country is this flag?"
+      i2.answer = "holland"
+      i2.save
+
+      i3 = ImageQuestion.new
+      i3.url = "http://images.nationalgeographic.com/wpf/media-live/photos/000/002/cache/arabian-camel_223_600x450.jpg"
+      i3.question = "Which animal is this?"
+      i3.answer = "camel"
+      i3.save
+
+      i4 = ImageQuestion.new
+      i4.url = "http://i46.tinypic.com/23wmro1.png"
+      i4.question = "From which movie is this famous scene?"
+      i4.answer = "matrix"
+      i4.save
+
+
+      i5 = ImageQuestion.new
+      i5.url = "http://www.diariouno.com.ar/export/1412553208270/sites/diariouno/imagenes/2014/10/05/gago-vigliano.jpg_274898881.jpg"
+      i5.question = "What is the name of this famous burglar?"
+      i5.answer = "vigliano"
+      i5.save
+
+      i6 = ImageQuestion.new
+      i6.url = "http://factmag-images.s3.amazonaws.com/wp-content/uploads/2013/10/zeppelin19102013.jpg"
+      i6.question = "What is the name of this band?"
+      i6.answer = "led zeppelin"
+      i6.save
+
+      i7 = ImageQuestion.new
+      i7.url = "http://www.nbt.bz/school%20bus%20door-side.JPG"
+      i7.question = "What is this?"
+      i7.answer = "bus"
+      i7.save
+
+      i8 = ImageQuestion.new
+      i8.url = "http://www.ihotwallpapers.com/wp-content/uploads/2014/09/Pepsi-logo-9.jpg"
+      i8.question = "What is the name of this brand?"
+      i8.answer = "pepsi"
+      i8.save
+
+    end
+
 
   end
 
@@ -237,25 +273,26 @@ class UsersController < ApplicationController
       @offers = Offer.actual.where(:id => OffersTitles.select("offer_id").where(:title_id => clients_titles)).all
     end
   end
+
   def home_map
     @user = current_user
     @offers = Array.new
     @longitude = -58.4
     @latitude = -34.6
 
-    current_client =  current_user.client.id
+    current_client = current_user.client.id
     @json = Offer.actual.to_gmaps4rails do |offer, marker|
       if offer.weight(current_client)>0
         marker.picture({
-            :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF0000|000000", # up to you to pass the proper parameters in the url, I guess with a method from device
-            :width   => 32,
-            :height  => 32
+                           :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF0000|000000", # up to you to pass the proper parameters in the url, I guess with a method from device
+                           :width => 32,
+                           :height => 32
                        })
       else
         marker.picture({
-            :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|3333FF|000000",
-            :width => 32,
-            :height => 32
+                           :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|3333FF|000000",
+                           :width => 32,
+                           :height => 32
                        })
       end
     end
@@ -268,16 +305,18 @@ class UsersController < ApplicationController
       end
 #Mostrar solo los que interesen
 #@json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
-    else if @user.user_role_id == 1
-           address = @user.company.branches.first.address
-           @json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
-         end
+    else
+      if @user.user_role_id == 1
+        address = @user.company.branches.first.address
+        @json = Address.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).take(10).to_gmaps4rails
+      end
     end
     unless address.nil?
       @latitude = address.latitude
       @longitude = address.longitude
     end
   end
+
   def inscribe
     offer_id = params[:offer_id]
     client_id = Client.where(:user_id => current_user.id).first.id
@@ -286,7 +325,7 @@ class UsersController < ApplicationController
     clients_offers.offer_id = offer_id
 #ponderar clients_titles
     offer = Offer.find(params[:offer_id])
-    offer.titles.each do|t|
+    offer.titles.each do |t|
       client_title = ClientsTitles.where(:client_id => client_id, :title_id => Title.select(:id).where(:id => t.id)).first()
       unless client_title.nil?
         client_title.weight += 1
@@ -309,12 +348,13 @@ class UsersController < ApplicationController
       redirect_to offer_path(Offer.find_by_id(offer_id))
     end
   end
+
   def unsubscribe
     clients_offers = ClientsOffer.find(params[:clients_offers_id])
     client_id = Client.where(:user_id => current_user.id).first.id
 #ponderar clients_titles
     offer = Offer.find(clients_offers.offer_id)
-    offer.titles.each do|t|
+    offer.titles.each do |t|
       client_title = ClientsTitles.where(:client_id => client_id, :title_id => Title.select(:id).where(:id => t.id)).first()
       unless client_title.nil?
         client_title.weight -= 1
@@ -330,6 +370,7 @@ class UsersController < ApplicationController
       redirect_to offer_path(Offer.find_by_id(params[:offer_id]))
     end
   end
+
   def change_newsletter_frequency
     session[:body]='page-micuenta'
     if !params[:user].nil?
@@ -339,6 +380,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
   def statistics
     @user = current_user
     @months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
@@ -351,6 +393,7 @@ class UsersController < ApplicationController
     end
     puts '@user'
   end
+
   def titles_data
     titles = Hash.new
     Title.all.each do |t|
@@ -367,6 +410,7 @@ class UsersController < ApplicationController
     end
     return titles
   end
+
   def activity_data
     amounts = Array.new
     @months.each do |m|
@@ -382,6 +426,7 @@ class UsersController < ApplicationController
     end
     return amounts
   end
+
   def offers_data
     offers = Array.new
     @months.each do |m|
@@ -399,6 +444,7 @@ class UsersController < ApplicationController
     end
     return offers
   end
+
   def comp_data
     comp = Hash.new
     Title.all.each do |t|
@@ -419,7 +465,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2)
+  def getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2)
     radius = 6371 # Radius of the earth in km
     dLat = deg2rad(lat2-lat1) # deg2rad below
     dLon = deg2rad(lon2-lon1);
@@ -428,6 +474,7 @@ class UsersController < ApplicationController
     d = radius * c; # Distance in km
     return d
   end
+
   def deg2rad(deg)
     return deg * (Math::PI/180)
   end
