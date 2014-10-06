@@ -7,33 +7,35 @@
 <body>
 
 <div class="page-content">
+  <input type="hidden" id="questions" value="<%=@questions.as_json%>" >
   <div class="container">
     <div class="show-quiz">
-    <!--<form>-->
-      <div class="question">
-        <h1>@question</h1>
-      </div>
-      <div id ="image">
-        <img id="question_image">
-      </div>
-      <div class="answer">
-        <input type="text" id="answerInput" name="answer" placeholder="Respuesta">
-        <!--<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="addTr">Confirmar</button>-->
-        <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="next">Siguiente</button>
-      </div>
-      <div class="timer">
-        <h2 id="timer">
-          <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
-          <input type="text" class="hidden" name="time" id="time">
+      <form>
+        <div class="question">
 
-        </h2>
-      </div>
-      <br>
-      <br>
-      <!--<div class="submit">-->
-        <!--<input type="submit" value="Completar">-->
-      <!--</div>-->
-    <!--</form>-->
+
+          <h1>@question</h1>
+        </div>
+        <div id ="image">
+          <img id="question_image">
+        </div>
+        <div class="answer">
+          <input type="text" id="answerInput" name="answer" placeholder="Respuesta">
+          <!--<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="addTr">Confirmar</button>-->
+          <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="next">Siguiente</button>
+        </div>
+        <div class="timer">
+          <h2 id="timer">
+            <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
+            <input type="text" class="hidden" name="time" id="time">
+          </h2>
+        </div>
+        <br>
+        <br>
+        <div class="submit">
+          <input type="submit" value="Completar">
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -41,7 +43,7 @@
 <!--Scripts-->
 <script src="../../assets/game2logic.js"></script>
 <script src="../../assets/game2.js"></script>
-  <link href="../../assets/game2.css" rel="stylesheet" type="text/css">
+<link href="../../assets/game2.css" rel="stylesheet" type="text/css">
 
 </body>
 </html>
