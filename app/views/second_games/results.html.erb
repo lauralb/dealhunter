@@ -14,19 +14,25 @@
   <tr>
     <div id="respuestasCorrectas">
       <td> <label class="label" id="lblResp">Respuestas Correctas</label></td>
-      <td> <label class="numero" id="nroResp">5</label></td>
+      <td> <label class="numero" id="nroResp"><%= @score %></label></td>
     </div>
   </tr>
   <tr>
     <div id="tiempoUtilizado">
-      <td><label class="label" id="lblTiempo">Tiempo Utilizado</label></td>
-      <td><label class="numero" id="nroTiempo">25</label></td>
+
+      <td>
+        <br>
+        <br>
+        <label class="label" id="lblTiempo">Tiempo Utilizado</label></td>
+      <td><label class="numero" id="nroTiempo"><%= @time %></label></td>
     </div>
   </tr>
   <tr>
     <div id="resultadoGral">
       <td>
-        <label id="resGral">1</label>
+        <br>
+        <br>
+        <label id="resGral">Resultado Gral = 1</label>
       </td>
     </div>
   </tr>

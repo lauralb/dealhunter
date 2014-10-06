@@ -3,11 +3,6 @@ class SecondGamesController < InheritedResources::Base
 
   end
 
-  def result
-
-  end
-
-
   def show
     allquestions = ImageQuestion.all
     @questions = []
@@ -21,15 +16,16 @@ class SecondGamesController < InheritedResources::Base
         previous_questions.append rand_position
         @questions.append(allquestions.at(rand_position))
     end
-    
+
   end
 
   def start
 
   end
 
-  def submit
-    time = params[:time]
+  def results
+    @time = params[:time].to_i
+    @score = params[:score].to_i
   end
 
 end
