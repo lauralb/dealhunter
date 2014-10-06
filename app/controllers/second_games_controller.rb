@@ -11,8 +11,13 @@ class SecondGamesController < InheritedResources::Base
   def show
 
   end
+
   def start
 
+  end
+
+  def submit
+    time = params[:time]
   end
 
 end
