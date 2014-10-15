@@ -206,58 +206,6 @@ class UsersController < ApplicationController
       end
     end
 
-    if ImageQuestion.all.empty?
-      i1 = ImageQuestion.new
-      i1.url = "http://img.ecologiahoy.com/2012/08/Vapor-de-agua.jpg"
-      i1.question = "What the name for this?"
-      i1.answer = "steam"
-      i1.save
-
-      i2 = ImageQuestion.new
-      i2.url = "http://www.brandfinance.com/images/flags/large/nl.png"
-      i2.question = "From which country is this flag?"
-      i2.answer = "holland"
-      i2.save
-
-      i3 = ImageQuestion.new
-      i3.url = "http://images.nationalgeographic.com/wpf/media-live/photos/000/002/cache/arabian-camel_223_600x450.jpg"
-      i3.question = "Which animal is this?"
-      i3.answer = "camel"
-      i3.save
-
-      i4 = ImageQuestion.new
-      i4.url = "http://i46.tinypic.com/23wmro1.png"
-      i4.question = "From which movie is this famous scene?"
-      i4.answer = "matrix"
-      i4.save
-
-
-      i5 = ImageQuestion.new
-      i5.url = "http://www.diariouno.com.ar/export/1412553208270/sites/diariouno/imagenes/2014/10/05/gago-vigliano.jpg_274898881.jpg"
-      i5.question = "What is the name of this famous burglar?"
-      i5.answer = "vigliano"
-      i5.save
-
-      i6 = ImageQuestion.new
-      i6.url = "http://factmag-images.s3.amazonaws.com/wp-content/uploads/2013/10/zeppelin19102013.jpg"
-      i6.question = "What is the name of this band?"
-      i6.answer = "led zeppelin"
-      i6.save
-
-      i7 = ImageQuestion.new
-      i7.url = "http://www.nbt.bz/school%20bus%20door-side.JPG"
-      i7.question = "What is this?"
-      i7.answer = "bus"
-      i7.save
-
-      i8 = ImageQuestion.new
-      i8.url = "http://www.ihotwallpapers.com/wp-content/uploads/2014/09/Pepsi-logo-9.jpg"
-      i8.question = "What is the name of this brand?"
-      i8.answer = "pepsi"
-      i8.save
-
-    end
-
 
   end
 
