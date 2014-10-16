@@ -26,22 +26,22 @@ $(document).ready(function () {
 
     $("#next").click(function (){
         var answer = $('#answerInput').val().toLowerCase();
-        //correct answer
+        alertify.set({ delay: 2000 });
+
         if(answer === (questionBank[questionNumber][1]).toLowerCase()){
+            alertify.success("Correcto!");
             score++;
+        }else{
+            alertify.error("Incorrecto!");
         }
 
         document.getElementById("score").value = score;
 
-        setTimeout(function(){changeQuestion()},1000);
-        questionNumber++;
-        displayQuestion();
+        setTimeout(function(){
+            questionNumber++;
+            displayQuestion();
+        },10000);
 
-        if (questionNumber == 4){
-            console.log("last question!");
-            var bt = document.getElementById("next");
-            bt.setAttribute("onclick", "clickLast()");
-        }
     });
 
 
@@ -58,3 +58,5 @@ $(document).ready(function () {
 function clickLast(){
     document.getElementById("submitBt").click();
 }
+
+

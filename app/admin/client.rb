@@ -30,7 +30,7 @@ ActiveAdmin.register Client do
     def create
       @user = User.new( params[:client][:user_attributes] )
       @user.user_role_id = 2
-      if ! @user.save
+      if !@user.save
         redirect_to new_admin_client_path , notice: 'El cliente no ha podido crearse.'
       end
 
@@ -40,7 +40,7 @@ ActiveAdmin.register Client do
       @client.user_id = @user.id
       @client.newsletter_frequency_id = 3
       @client.save!
-      if ! @client.save
+      if !@client.save
         redirect_to new_admin_client_path, notice: 'El cliente no ha podido crearse.'
       end
       NewUserMailer.new_client_email(@client.user).deliver
