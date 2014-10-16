@@ -18,8 +18,8 @@ $(document).ready(function () {
         questionBank[i][0]=quizlist[i].question;
         questionBank[i][1]=quizlist[i].answer;
         questionBank[i][2]=quizlist[i].url;
-
     }
+
     numberOfQuestions=questionBank.length;
     displayQuestion();
 
@@ -36,6 +36,12 @@ $(document).ready(function () {
         setTimeout(function(){changeQuestion()},1000);
         questionNumber++;
         displayQuestion();
+
+        if (questionNumber == 4){
+            console.log("last question!");
+            var bt = document.getElementById("next");
+            bt.setAttribute("onclick", "clickLast()");
+        }
     });
 
 
@@ -48,3 +54,7 @@ $(document).ready(function () {
 
     $('#')
 });//doc ready
+
+function clickLast(){
+    document.getElementById("submitBt").click();
+}
