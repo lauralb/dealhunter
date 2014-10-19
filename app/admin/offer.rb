@@ -47,4 +47,14 @@ ActiveAdmin.register Offer do
 
   end
 
+  controller do
+    def create
+      if !params["offer"]["branch_id"].empty?
+        super
+      else
+        redirect_to :back, :notice => "debe completar todos los campos obligatorios"
+      end
+    end
+  end
+
 end
