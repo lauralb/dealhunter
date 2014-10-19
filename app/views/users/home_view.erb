@@ -13,6 +13,7 @@
         <div style="float: left; margin-left:10% ">
           <h5>Interés</h5>
           <select id="search-title" name="search_title">
+            <option>Sin filtrar</option>
             <% Title.all.each do |title| %>
                 <option><%=title.name%></option>
             <%end%>

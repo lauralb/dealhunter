@@ -168,14 +168,7 @@ class UsersController < ApplicationController
     if @user.company?
       @offers = Offer.actual.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).order("created_at DESC").take(6)
     else
-      current_client = current_user.client.id
-      offers=Array.new
-      Offer.actual.each do |offer|
-        if offer.weight(current_client)>0
-          offers.append(offer)
-        end
-      end
-      @offers=offers.sort_by { |e| e.get_current_weight }.reverse
+      @offers = Offer.actual.order("created_at DESC")
     end
 
     if !params[:id].nil?
@@ -202,7 +195,7 @@ class UsersController < ApplicationController
       end
 
 
-      unless params[:search_title].empty?
+      unless params[:search_title] == "Sin filtrar"
         @offers.delete_if do |offer|
           !(offer.has_title(params[:search_title]))
         end
