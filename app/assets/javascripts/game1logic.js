@@ -17,13 +17,16 @@ $(document).ready(function () {
     var score=0;
     var selected="";
 
+    var nums = shuffle([1,2,3,4]);
+
     for(i=0;i<questionList.length;i++){
         questionBank[i]=new Array;
         questionBank[i][0]=questionList[i].question;
-        questionBank[i][1]=questionList[i].answer1;
-        questionBank[i][2]=questionList[i].answer2;
-        questionBank[i][3]=questionList[i].answer3;
-        questionBank[i][4]=questionList[i].correct_answer;
+        questionBank[i][nums[0]]=questionList[i].answer1;
+        questionBank[i][nums[1]]=questionList[i].answer2;
+        questionBank[i][nums[2]]=questionList[i].answer3;
+        questionBank[i][nums[3]]=questionList[i].correct_answer;
+        questionBank[i][5]=questionList[i].correct_answer;
     }
 
     for(i=0;i<questionList.length;i++){
@@ -36,7 +39,8 @@ $(document).ready(function () {
 
     $("#next").click(function (){
         alertify.set({ delay: 2000 });
-        var correct = questionBank[questionNumber][4];
+
+        var correct = questionBank[questionNumber][5];
 
         if(correct === selected){
             alertify.success("Correcto!");
@@ -82,5 +86,17 @@ function clickLast(){
 }
 
 
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex ;
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
 
 

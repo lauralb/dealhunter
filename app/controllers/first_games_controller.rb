@@ -29,7 +29,8 @@ class FirstGamesController < InheritedResources::Base
   end
 
   def results
-
+    @time = params[:time].to_i
+    @score = params[:score].to_i
   end
 
 end

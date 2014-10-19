@@ -8,28 +8,33 @@
 
 </head>
 <body><div id="wrapper">
-<div id="title">Terminaste la Trivia!!!</div>
+<div id="title">Terminaste la Deal-Trivia!!</div>
 <div class="spacer"></div>
 <table>
-  <tr class="wrapper-text">
 
+  <tr>
     <div id="respuestasCorrectas">
-      <td  width="90%"> <label class="texto" id="lblResp">Respuestas Correctas</label></td>
-      <td width="10px"> <label class="numero" id="nroResp">5</label></td>
+      <td>
+        <label class="label">Respuestas Correctas</label>
+      </td>
+      <td>
+        <label class="numero" style=" margin-left: 200px; "> <%= @score %>/5</label>
+      </td>
     </div>
 
-  </tr>
-  <tr class="wrapper-text">
-
-    <div id="tiempoUtilizado">
-      <td width="90%"><label class="texto" id="lblTiempo">Tiempo Utilizado (Segs)</label></td>
-      <td width="10px"><label class="numero" id="nroTiempo"></label></td>
-    </div>
   </tr>
   <tr>
-    <div id="resultadoGral">
+
+    <div id="tiempoUtilizado">
       <td>
-        <label id="resGral">1</label>
+      <br>
+      <br>
+        <label class="label" id="lblTiempo">Tiempo Utilizado</label>
+      </td>
+      <td>
+        <br>
+        <br>
+        <label class="numero" style=" margin-left: 200px; "> <%=@time %> seg.</label>
       </td>
     </div>
   </tr>
