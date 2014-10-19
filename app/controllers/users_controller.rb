@@ -168,40 +168,63 @@ class UsersController < ApplicationController
     if @user.company?
       @offers = Offer.actual.where(:branch_id => Branch.select(:id).where(:company_id => @user.company.id)).order("created_at DESC").take(6)
     else
-      # TODO check why it isn't working
-      # current_client = current_user.client.id
-      # offers=Array.new
-      # Offer.actual.each do |offer|
-      #   if offer.weight(current_client)>0
-      #     offers.append(offer)
-      #   end
-      # end
-      # @offers=offers.sort_by { |e| e.get_current_weight }.reverse
+      current_client = current_user.client.id
+      offers=Array.new
+      Offer.actual.each do |offer|
+        if offer.weight(current_client)>0
+          offers.append(offer)
+        end
+      end
+      @offers=offers.sort_by { |e| e.get_current_weight }.reverse
     end
 
     if !params[:id].nil?
 
 # Filter
       price_range = params[:search_price]
-      min_price = price_range != nil ? price_range.split(/,/).at(0).to_i : 0
-      max_price = price_range != nil ? price_range.split(/,/).at(1).to_i : 1000
-      max_distance = params[:search_distance].to_i
-      longitude = params[:longitude].to_i
-      latitude = params[:latitude].to_i
 
-      @offers.delete_if do |offer|
-        !(offer.company.name.downcase.include? params[:search_company].downcase) || # Filter by company
-            !(offer.has_title(params[:search_title])) || # Filter by title
-            offer.start_date < Date.parse(params[:search_date], "%d/%m/%Y") || # Filter by date
-            offer.prizes[0].discounted_price > max_price || # Filter by max price
-            offer.prizes[0].discounted_price < min_price # Filter by min price
-        #max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
+      max_distance = params[:search_distance].to_i unless params[:search_distance].empty? or params[:search_distance] == 0
+      longitude = params[:longitude].to_i unless params[:longitude].empty?
+      latitude = params[:latitude].to_i unless params[:latitude].empty?
+
+      unless params[:search_price].empty?
+        min_price = !price_range.empty? ? price_range.split(/,/).at(0).to_i : 0
+        max_price = !price_range.empty? ? price_range.split(/,/).at(1).to_i : 1000
+        @offers.delete_if do |offer|
+          offer.prizes[0].discounted_price > max_price or offer.prizes[0].discounted_price < min_price # Filter by min price
+        end
       end
-#Filter by recomendation
+
+      unless params[:search_company].empty?
+        @offers.delete_if do |offer|
+          !(offer.company.name.downcase.include? params[:search_company].downcase)
+        end
+      end
+
+
+      unless params[:search_title].empty?
+        @offers.delete_if do |offer|
+          !(offer.has_title(params[:search_title]))
+        end
+      end
+
+      unless params[:search_date].empty?
+        @offers.delete_if do |offer|
+          offer.start_date < Date.parse(params[:search_date], "%d/%m/%Y")
+        end
+      end
+
+      unless max_distance.nil?
+        @offers.delete_if do |offer|
+          max_distance < getDistanceFromLatLonInKm(latitude,longitude,offer.latitude, offer.longitude) #Filter by distance
+        end
+      end
+
+      #Filter by recomendation
       recomendations_only = params[:search_recomendations]=="on" ? true : false
       if recomendations_only
         @offers.delete_if do |offer|
-          offer.weight < 1
+          offer.weight(current_user.client.id) < 1
         end
       end
     end
