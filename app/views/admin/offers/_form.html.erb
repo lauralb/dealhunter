@@ -2,6 +2,7 @@
 
 <%= semantic_nested_form_for [:admin, @offer] do |f|%>
 
+    <%=     f.semantic_errors *notice %>
     <div>
       <%=f.inputs "Info de Oferta" do%>
           <%=f.input :name %>

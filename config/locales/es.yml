@@ -100,11 +100,13 @@ es:
         offer:
           attributes:
             publication_date:
-              blank: Fecha de publicacion vacia
+              blank: Fecha de publicación vacía
             start_date:
-              blank: Fecha de inicio vacia
+              blank: Fecha de inicio vacía
             end_date:
-              blank: Fecha de finalizacion vacia
+              blank: Fecha de finalización vacía
+            name:
+              blank: Nombre vacío
         prize:
           attributes:
             name:
