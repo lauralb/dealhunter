@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :client, :allow_destroy => true
 
   def company?
-    role_id = UserRole.where(:name => "CompanyUser").first().id
-    self.user_role_id == role_id
+    # role_id = UserRole.where(:name => "CompanyUser").first().id
+    # self.user_role_id == role_id
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
@@ -34,24 +34,14 @@ class User < ActiveRecord::Base
         return registered_user
       else
         user = User.create(
-                           provider:auth.provider,
-                           uid:auth.uid,
-                           email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
+            provider:auth.provider,
+            uid:auth.uid,
+            email:auth.info.email,
+            password:Devise.friendly_token[0,20]
 
         )
       end
-    end
-  end
 
-
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.instance_variable_names
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     end
   end
 
