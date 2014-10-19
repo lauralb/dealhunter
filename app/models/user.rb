@@ -33,13 +33,19 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-        user = User.create(
-            provider:auth.provider,
-            uid:auth.uid,
-            email:auth.info.email,
-            password:Devise.friendly_token[0,20],
-            user_role_id:2
-        )
+
+        user = Client.create(
+            first_name: auth.info.first_name,
+                last_name: auth.info.last_name,
+                newsletter_frequency_id:1,
+                user_id:User.create(
+                    provider:auth.provider,
+                    uid:auth.uid,
+                    email:auth.info.email,
+                    password:Devise.friendly_token[0,20],
+                    user_role_id:2
+                ).id
+            ).user
       end
 
     end
