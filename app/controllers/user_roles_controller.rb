@@ -5,7 +5,7 @@ class UserRolesController < ApplicationController
     @user_roles = UserRole.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.erb.erb
       format.json { render json: @user_roles }
     end
   end

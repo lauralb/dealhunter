@@ -5,7 +5,7 @@ class BranchesController < ApplicationController
     @branches = Branch.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.erb.erb
       format.json { render json: @branches }
     end
   end
