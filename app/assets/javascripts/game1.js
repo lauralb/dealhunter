@@ -16,11 +16,8 @@ function formatTime(time){
     } else {
         return timeString;
     }
-<<<<<<< HEAD:app/assets/javascripts/game2.js
-=======
 }
 
 function displayFinal (){
     window.location.replace("results?timer=" + seconds);
->>>>>>> DEAL-010:app/assets/javascripts/game1.js
 }

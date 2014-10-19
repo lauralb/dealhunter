@@ -1,7 +1,18 @@
 class FirstGamesController < InheritedResources::Base
 
   def show
-    @questions = Question.all
+    allquestions = Question.all
+    @questions = []
+    previous_questions = []
+    size = allquestions.size
+    5.times do
+      rand_position = rand(size -1)
+      while previous_questions.include? rand_position
+        rand_position = rand(size - 1)
+      end
+      previous_questions.append rand_position
+      @questions.append(allquestions.at(rand_position))
+    end
 
     respond_to do |format|
       format.html # index.html.erb

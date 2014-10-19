@@ -1,18 +1,82 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>::Game 1::</title>
+  <link href="../../assets/game1.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/alertify.bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/alertify.core.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/alertify.default.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
-<% @questions%>
+<div class="page-content">
 
-<h3>Pregunta</h3>
-<img src="" class="centered">
 
-<div class="answer"></div>
+  <input type="hidden" id="questions" value="<%=@questions.as_json%>" >
 
-<script>
-</script>
+  <div class="container">
+    <div class="show-quiz">
+      <%= form_tag "/first_games/results" do %>
+          <div class="question">
+            <h2 id="question"></h2>
+          </div>
+          <div class="span4 message-box center">
+            <div class="text-center">
+              <div class="answer">
+                <input type="radio" name="answer" value="1" id="ans1"> <h4 id="rta1"></h4>
+              </div>
+              <div class="answer">
+                <input type="radio" name="answer" value="1" id="ans2"> <h4 id="rta2"></h4>
+
+              </div>
+              <div class="answer">
+                <input type="radio" name="answer" value="1" id="ans3"> <h4 id="rta3"></h4>
+
+              </div>
+              <div class="answer">
+                <input type="radio" name="answer" value="1" id="ans4"> <h4 id="rta4"></h4>
+
+              </div>
+
+              <div class="answer" hidden>
+                <input type="radio" name="answer" value="1" id="ans0">
+              </div>
+
+            </div>
+
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="next">Siguiente</button>
+
+
+            <div class="submit" hidden>
+              <input type="submit" id="submitBt">
+            </div>
+          </div>
+      <% end %>
+      </div>
+
+  </div>
+
+
+  <div class="timer">
+    <h2 id="timer">
+      <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
+      <input type="text" class="hidden" name="time" id="time">
+      <input type="text" class="hidden" name="score" id="score">
+    </h2>
+  </div>
+
+</div>
+
+
+
+<!--Scripts-->
+<script src="../../assets/game1.js"></script>
+<script src="../../assets/game1logic.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="../../assets/alertify.min.js"></script>
+
+
 </body>
 </html>

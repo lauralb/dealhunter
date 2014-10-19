@@ -11,7 +11,9 @@
 <div class="container" id="main-game2">
     <div id="centered-content">
         <h1 id="deal-trivia">DEAL-TRIVIA</h1>
-        <button type="button" class="btn btn-danger btn-large" id="btn-begin" >Empezar!</button>
+
+        <%=button_to "Empezar!", 'show', id:"btn-begin", :method => :get %>
+       <!-- <button type="button" class="btn btn-danger btn-large" id="btn-begin" >Empezar!</button>    -->
     </div>
 </div>
 </body>

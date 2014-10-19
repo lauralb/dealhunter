@@ -6,11 +6,9 @@ $(document).ready(function () {
     var questions = document.getElementById("questions").value.replace(/=>/g, ":");
     var cheto = '{["questions" : "'+ questions.slice(1,questions.length) +"]}";
 
-   var quizlist= JSON.parse(questions);
-//    var questions1= questions.parseJSON();
-//    var testStringJSON = ""
+    var quizlist= JSON.parse(questions);
     var questionBank=new Array();
-    var numberOfQuestions;
+    var numberOfQuestions=0;
     var score=0;
 
     for(i=0;i<quizlist.length;i++){
@@ -40,19 +38,19 @@ $(document).ready(function () {
         setTimeout(function(){
             questionNumber++;
             displayQuestion();
-        },10000);
+        },1000);
 
     });
 
 
     function displayQuestion(){
+        if(questionNumber == 5) clickLast();
         $(".question h1").text(questionBank[questionNumber][0]);
         $("#question_image").attr("src",questionBank[questionNumber][2]);
         $("#answerInput").val("");
     }//display question
 
 
-    $('#')
 });//doc ready
 
 function clickLast(){
