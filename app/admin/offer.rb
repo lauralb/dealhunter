@@ -51,6 +51,8 @@ ActiveAdmin.register Offer do
     def create
       if !params["offer"]["branch_id"].empty?
         super
+        @offer.is_first_game = [true, false].sample
+        @offer.save
       else
         redirect_to :back, :notice => "debe completar todos los campos obligatorios"
       end

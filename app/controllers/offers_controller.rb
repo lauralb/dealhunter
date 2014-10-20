@@ -73,6 +73,7 @@ class OffersController < ApplicationController
     @offer.description = offer[:description]
     @offer.start_date = @offer.start_date.change({:hour => (offer[:start_hour]).to_i})
     @offer.end_date = @offer.end_date.change({:hour => (offer[:end_hour]).to_i})
+    @offer.is_first_game = [true, false].sample
 
 
     respond_to do |format|
