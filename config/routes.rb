@@ -11,7 +11,7 @@ DealHunter::Application.routes.draw do
 
   resources :newsletter_frequencies
 
-
+  match 'pages/results_email' => 'pages#results_email'
   match 'second_games/show' => 'second_games#show'
   match 'second_games/results' => 'second_games#results'
   match 'second_games/index' => 'second_games#index'
