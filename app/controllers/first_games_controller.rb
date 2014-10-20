@@ -31,7 +31,12 @@ class FirstGamesController < InheritedResources::Base
   def results
     @time = params[:time].to_i
     @score = params[:score].to_i
+    clientOffer = ClientsOffer.where(:client_id => current_user.id,:offer_id => current_user.client.current_offer).first
+    clientOffer[:time] = Integer(params[:time])
+    clientOffer[:correct_answers] = Integer(params[:score])
+    clientOffer[:participated] = true
+    clientOffer.save
+
   end
 
 end
-

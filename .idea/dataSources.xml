@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1987947138">
+  <component name="DataSourceManagerImpl" format="xml" hash="2565634215">
     <data-source source="LOCAL" name="Rails dealhunter: development" uuid="34ef72e9-2bd4-47b9-a3bb-c4db7029ce9a">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

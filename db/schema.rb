@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(:version => 20141019174145) do
-=======
-ActiveRecord::Schema.define(:version => 20140915224022) do
->>>>>>> Stashed changes
+ActiveRecord::Schema.define(:version => 20141020213125) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -81,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20140915224022) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "newsletter_frequency_id", :default => 4
+    t.integer  "current_offer"
   end
 
   create_table "clients_companies", :force => true do |t|
@@ -96,8 +93,10 @@ ActiveRecord::Schema.define(:version => 20140915224022) do
     t.integer  "client_id"
     t.integer  "position"
     t.boolean  "participated"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "time"
+    t.integer  "correct_answers"
   end
 
   add_index "clients_offers", ["client_id"], :name => "index_clients_offers_on_client_id"
