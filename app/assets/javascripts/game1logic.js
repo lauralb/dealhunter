@@ -17,9 +17,10 @@ $(document).ready(function () {
     var score=0;
     var selected="";
 
-    var nums = shuffle([1,2,3,4]);
+
 
     for(i=0;i<questionList.length;i++){
+        var nums = shuffle([1,2,3,4]);
         questionBank[i]=new Array;
         questionBank[i][0]=questionList[i].question;
         questionBank[i][nums[0]]=questionList[i].answer1;
