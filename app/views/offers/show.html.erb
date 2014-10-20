@@ -344,11 +344,12 @@
 </div>
 
 <script type="text/javascript">
-    var a = getDistanceFromLatLonInKm(<%=current_user.client.address.latitude%>, <%=current_user.client.address.longitude%>, <%=@offer.branch.address.latitude%>, <%=@offer.branch.address.longitude%>);
-    var d = document.getElementById("distance");
-    d.innerHTML = Math.round(a*100)/100 + " kilómetros.";
+    <% unless current_user.client.address.nil? || @offer.branch.address.nil? %>
+        var a = getDistanceFromLatLonInKm(<%=current_user.client.address.latitude%>, <%=current_user.client.address.longitude%>, <%=@offer.branch.address.latitude%>, <%=@offer.branch.address.longitude%>);
+        var d = document.getElementById("distance");
+        d.innerHTML = "A " + Math.round(a*100)/100 + " kilómetros de tu ubicación.";
+    <% end %>
     function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-        alert(lat1+" ,"+lon1+" ,"+lat2+" ,"+lon2);
         var R = 6371000; // Radius of the earth in m
         var dLat = deg2rad(lat2-lat1);  // deg2rad below
         var dLon = deg2rad(lon2-lon1);
