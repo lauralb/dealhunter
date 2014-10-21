@@ -30,7 +30,6 @@ class OffersController < ApplicationController
 
     addresses = Array.new
     addresses.push(address)
-    #@json = addresses.to_gmaps4rails
     @json = @offer.to_gmaps4rails
 
     respond_to do |format|
