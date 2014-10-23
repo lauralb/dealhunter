@@ -38,7 +38,7 @@
 <table cellpadding="10px" cellspacing="0" align="center" style="background-color: #ffffff;" width="600px">
 <tr>
   <td>
-    <p style="text-align: left">Hola, @user.name</p>
+    <p style="text-align: left">Hola, <%=@user.email%></p>
   </td>
 </tr>
   <tr>
@@ -51,21 +51,21 @@
   </tr>
   <tr>
     <td>
-      <p>Haz finalizado en @position en @offer</p>
+      <p>Has finalizado en <%=@position%> en <%=@offer.name%></p>
     </td>
   </tr>
   <tr>
     <td>
-      Haz ganado @prize <br>
+      Has ganado <%=@prize.name%> <br>
       El equipo de Dealhunter te felicita por tu desempeño. <br>
       Aqui hay un par de ofertas que podrian interesarte. <br>
     </td>
   </tr>
   <tr>
     <td>
-      @offers.each do |offer|
+        <%=@offers.each do |offer|
         offer.name
-      end
+        end%>
     </td>
   </tr>
   <tr>

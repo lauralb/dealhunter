@@ -38,17 +38,17 @@
 <table cellpadding="10px" cellspacing="0" align="center" style="background-color: #ffffff;" width="600px">
   <tr>
     <td>
-      <p style="text-align: left">Hola, @user.name</p>
+      <p style="text-align: left">Hola, <%=@user.name%>/p>
     </td>
   </tr>
   <tr>
     <td>
-      <h1>@offer ha finalizado</h1>
+      <h1><%=@offer%> ha finalizado</h1>
     </td>
   </tr>
   <tr>
     <td>
-      <p>Tu posición fue @position</p>
+      <p>Tu posición fue <%=@position%></p>
     </td>
   </tr>
   <tr>
@@ -59,9 +59,9 @@
   </tr>
   <tr>
     <td>
-      @offers.each do |offer|
-      offer.name
-      end
+        <%=@offers.each do |offer|
+        offer.name
+        end%>
     </td>
   </tr>
   <tr>
