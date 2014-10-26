@@ -1,6 +1,7 @@
 class SecondGamesController < InheritedResources::Base
   def index
-
+    current_user.client.current_offer = params[:offer_id] unless params[:offer_id].nil?
+    current_user.client.save
   end
 
   def show
