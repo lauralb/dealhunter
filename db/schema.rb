@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141020213125) do
+ActiveRecord::Schema.define(:version => 20141027213559) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20141020213125) do
 
   create_table "offers", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "photo"
     t.integer  "branch_id"
     t.text     "description"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20141020213125) do
     t.string   "gmaps"
     t.date     "publication_date"
     t.boolean  "publicated"
+    t.boolean  "finalization_checked"
   end
 
   create_table "offers_titles", :force => true do |t|
