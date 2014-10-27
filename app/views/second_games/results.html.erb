@@ -8,13 +8,13 @@
 </head>
 <body>
 <div id="container">
-<div id="title">Terminaste la Trivia!!!</div>
+<div id="title" align="center">Terminaste el Deal-Tionary!!!</div>
 <div class="spacer"></div>
-<table>
+<table align="center">
   <tr>
     <div id="respuestasCorrectas">
       <td> <label class="label" id="lblResp">Respuestas Correctas</label></td>
-      <td> <label class="numero" id="nroResp"><%= @score %></label></td>
+      <td> <label class="numero" id="nroResp"><%= @score %>/5 </label></td>
     </div>
   </tr>
   <tr>
@@ -23,16 +23,12 @@
       <td>
         <br>
         <br>
-        <label class="label" id="lblTiempo">Tiempo Utilizado</label></td>
-      <td><label class="numero" id="nroTiempo"><%= @time %></label></td>
-    </div>
-  </tr>
-  <tr>
-    <div id="resultadoGral">
+        <label class="label" id="lblTiempo">Tiempo Utilizado</label>
+      </td>
       <td>
         <br>
         <br>
-        <label id="resGral">Resultado Gral = 1</label>
+        <label class="numero" id="nroTiempo"><%= @time %> seg.</label>
       </td>
     </div>
   </tr>

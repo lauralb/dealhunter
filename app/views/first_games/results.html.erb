@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>DEAL-TRIVIA</title>
+  <%= stylesheet_link_tag 'first_games/results.css' %>
+  <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+</head>
+<body><div id="wrapper">
+<div id="title">Terminaste la Deal-Trivia!!</div>
+<div class="spacer"></div>
+<table>
+
+  <tr>
+    <div id="respuestasCorrectas">
+      <td>
+        <label class="label">Respuestas Correctas</label>
+      </td>
+      <td>
+        <label class="numero" style=" margin-left: 200px; "> <%= @score %>/5</label>
+      </td>
+    </div>
+
+  </tr>
+  <tr>
+
+    <div id="tiempoUtilizado">
+      <td>
+      <br>
+      <br>
+        <label class="label" id="lblTiempo">Tiempo Utilizado</label>
+      </td>
+      <td>
+        <br>
+        <br>
+        <label class="numero" style=" margin-left: 200px; "> <%=@time %> seg.</label>
+      </td>
+    </div>
+  </tr>
+
+</table>
+</div>
+</body>
+
+<script type="text/javascript">
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    document.getElementById("nroTiempo").innerHTML = getParameterByName("timer");
+
+</script>
+</html>

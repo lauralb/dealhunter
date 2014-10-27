@@ -10,7 +10,7 @@ class OffersController < ApplicationController
 
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.erb.erb
       format.json { render json: @offers }
     end
 
@@ -30,7 +30,6 @@ class OffersController < ApplicationController
 
     addresses = Array.new
     addresses.push(address)
-    #@json = addresses.to_gmaps4rails
     @json = @offer.to_gmaps4rails
 
     respond_to do |format|

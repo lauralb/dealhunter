@@ -33,25 +33,21 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-        user = User.create(
-                           provider:auth.provider,
-                           uid:auth.uid,
-                           email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
 
-        )
+        user = Client.create(
+            first_name: auth.info.first_name,
+                last_name: auth.info.last_name,
+                newsletter_frequency_id:1,
+                user_id:User.create(
+                    provider:auth.provider,
+                    uid:auth.uid,
+                    email:auth.info.email,
+                    password:Devise.friendly_token[0,20],
+                    user_role_id:2
+                ).id
+            ).user
       end
-    end
-  end
 
-
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.instance_variable_names
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     end
   end
 

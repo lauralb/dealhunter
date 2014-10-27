@@ -1,9 +1,11 @@
 .show-quiz div.question h1{
     top:50%;
-    left: 50%
+    left: 50%;
     margin: 10px 380px;
     text-align: center;
     color: #061117;
+    width: 600px;
+    /*background: #ffff00;*/
 }
 
 #question_image{

@@ -17,3 +17,7 @@ function formatTime(time){
         return timeString;
     }
 }
+
+function displayFinal (){
+    window.location.replace("results?timer=" + seconds);
+}

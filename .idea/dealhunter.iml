@@ -113,8 +113,6 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
-      <RunnerSettings RunnerId="RubyDebugRunner" />
-      <ConfigurationWrapper RunnerId="RubyDebugRunner" />
       <method />
     </configuration>
   </component>
@@ -141,26 +139,26 @@
     <orderEntry type="library" scope="PROVIDED" name="bourbon (v3.2.3, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.0.4, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.6.5, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="capybara (v2.4.3, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="carrierwave (v0.10.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chronic (v0.10.2, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v3.2.2, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.3.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.8.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="devise (v3.3.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.0.3, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="excon (v0.39.6, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.2.1, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="factory_girl (v4.4.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v4.4.1, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="excon (v0.40.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_girl (v4.5.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v4.5.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday (v0.9.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="fog (v1.23.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog (v1.24.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fog-brightbox (v0.5.1, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fog-core (v1.24.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fog-json (v1.0.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="fog-softlayer (v0.3.18, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-radosgw (v0.0.3, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-sakuracloud (v0.1.1, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-softlayer (v0.3.20, RVM: ruby-1.9.3-p547) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-xml (v0.1.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="forgery (v0.6.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formatador (v0.2.5, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formtastic (v2.3.1, RVM: ruby-1.9.3-p547) [gem]" level="application" />
@@ -213,7 +211,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v2.99.2, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v2.99.2, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v2.99.0, RVM: ruby-1.9.3-p547) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sass (v3.4.5, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v3.2.6, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v2.2.2, RVM: ruby-1.9.3-p547) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.9, RVM: ruby-1.9.3-p547) [gem]" level="application" />

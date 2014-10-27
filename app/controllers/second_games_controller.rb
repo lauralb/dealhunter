@@ -1,6 +1,7 @@
 class SecondGamesController < InheritedResources::Base
   def index
-
+    current_user.client.current_offer = params[:offer_id] unless params[:offer_id].nil?
+    current_user.client.save
   end
 
   def show
@@ -27,6 +28,12 @@ class SecondGamesController < InheritedResources::Base
     @time = params[:time].to_i
     @score = params[:score].to_i
     1+1
+    clientOffer = ClientsOffer.where(:client_id => current_user.id,:offer_id => current_user.client.current_offer).first
+    clientOffer[:time] = Integer(params[:time])
+    clientOffer[:correct_answers] = Integer(params[:score])
+    clientOffer[:participated] = true
+    clientOffer.save
+
   end
 
 end

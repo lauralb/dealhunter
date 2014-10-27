@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><DEAL-TRIVIA></DEAL-TRIVIA></title>
+  <%= stylesheet_link_tag 'bootstrap.css' %>
+  <%= stylesheet_link_tag 'first_games/index.css' %>
+
+</head>
+<body>
+<div class="container" id="main-game2">
+    <div id="centered-content">
+        <h1 id="deal-trivia">DEAL-TRIVIA</h1>
+
+        <%=button_to "Empezar!", 'show', id:"btn-begin", :method => :get %>
+       <!-- <button type="button" class="btn btn-danger btn-large" id="btn-begin" >Empezar!</button>    -->
+    </div>
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@ class NewsletterFrequenciesController < ApplicationController
     @newsletter_frequencies = NewsletterFrequency.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.erb.erb
       format.json { render json: @newsletter_frequencies }
     end
   end

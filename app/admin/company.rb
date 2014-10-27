@@ -43,7 +43,7 @@ ActiveAdmin.register Company do
         @company.user.user_role_id = role_id
         @company.save!
         NewUserMailer.new_user_email(@company.user, @company).deliver
-        @page.put_object('1474232979498488','feed', :message => @company.name + " fue creada!")
+        @page.put_object('1474232979498488','feed', :message => @company.name + " se ha unido")
       end
     end
 

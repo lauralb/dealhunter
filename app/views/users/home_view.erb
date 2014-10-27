@@ -5,13 +5,15 @@
 <script src="/assets/bootstrap-datepicker.js" rel="script" type="text/javascript"></script>
 <script src="/assets/bootstrap-switch-master/dist/js/bootstrap-switch.min.js" rel="script" type="text/javascript"></script>
 <div class="container" id="main-content2">
-  <div class="row" style="background: #ffffff">
+  <% unless @user.company?%>
+  <div class="row" style="background: #ffffff; border-radius: 25px;">
     <h1 style="text-align: center">Buscar</h1>
     <%= form_tag(:id => 'search-form') do %>
 
         <div style="float: left; margin-left:10% ">
           <h5>Interés</h5>
           <select id="search-title" name="search_title">
+            <option>Sin filtrar</option>
             <% Title.all.each do |title| %>
                 <option><%=title.name%></option>
             <%end%>
@@ -38,7 +40,9 @@
         </div>
     <% end %>
   </div>
-  <div class="row">
+  <% end %>
+
+  <div class="row" style="margin-top: 20px;">
     <!-- /* solapa --------------------------- */-->
     <%if @offers.empty?%>
         <%if @user.company? %>
@@ -239,6 +243,9 @@
 </script>
 
 <script type="text/javascript" charset="utf-8">
+    $( document ).ready(function() {
+        navigator.geolocation.getCurrentPosition(setPosition);
+    });
 
     var lat = document.getElementById("latitude");
     var long = document.getElementById("longitude");
@@ -251,10 +258,9 @@
     }
 
     function setPosition(position) {
-        alert(position.coords.latitude)
         lat.value = position.coords.latitude;
         long.value = position.coords.longitude;
-//        $("#latitude").val(position.coords.latitude);
-//        $("#longitude").val(position.coords.longitude);
+        $("#latitude").val(position.coords.latitude);
+        $("#longitude").val(position.coords.longitude);
     }
 </script>
