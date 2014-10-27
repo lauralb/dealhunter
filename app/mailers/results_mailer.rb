@@ -1,12 +1,12 @@
 class ResultsMailer < ActionMailer::Base
   default :from =>  "noresponder@dealhunter.com"
 
-  def results(company, offer, prizes)
+  def results_mailer(company, offer)
 
     @offer = offer
-    @prizes = prizes
+    @prizes = Prize.all.delete_if{|x| x.offer != offer}
     @company = company
-    @client = ClientsOffer.all.delete_if{|x| x.offer != offer && x.participated.nil?}.client
+    @clients = ClientsOffer.all.delete_if{|x| x.offer != offer && x.participated.nil?}.client
 
     mail(:to => company.email, :subject => "Resumen de oferta #{offer.name}")
   end
