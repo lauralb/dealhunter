@@ -38,7 +38,7 @@
 <table cellpadding="10px" cellspacing="0" align="center" style="background-color: #ffffff;" width="600px">
   <tr>
     <td>
-      <p style="text-align: left">Hola, <%=@company.email%></p>
+      <p style="text-align: left">Hola, <%=@company.name%></p>
     </td>
   </tr>
   <tr>
@@ -57,9 +57,11 @@
   </tr>
   <tr>
     <td>
-        <% @clients.size.each do |index|%>
-        <%= "El cliente #{@client[index].name} ha ganado #{@prizes[index].name}" %>
-      <%end%>
+        <% @clients.each_with_index do |client , index| %>
+            <%= "El cliente #{client.name} ha ganado #{@prizes[index].name}" %>
+        <%end%>
+
+
     </td>
   </tr>
 
