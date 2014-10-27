@@ -6,7 +6,7 @@ class GameLooserMailer < ActionMailer::Base
     @offer = offer
     @position = position
     @offers = other_offers
-    mail(:to => 'nschejtman@hotmail.com', :subject => 'Dealhunter: Resultado de Oferta!')
+    mail(:to => @user.email, :subject => 'Dealhunter: Resultado de Oferta!')
   end
 
 
