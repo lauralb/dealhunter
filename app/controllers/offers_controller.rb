@@ -71,6 +71,7 @@ class OffersController < ApplicationController
     @offer.photo = offer[:photo]
     @offer.branch = Branch.find(offer[:branch_id])
     @offer.description = offer[:description]
+    @offer.publication_date = offer[:publication_date]
     @offer.start_date = @offer.start_date.change({:hour => (offer[:start_hour]).to_i})
     @offer.end_date = @offer.end_date.change({:hour => (offer[:end_hour]).to_i})
     @offer.is_first_game = [true, false].sample

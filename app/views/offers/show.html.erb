@@ -66,10 +66,12 @@
             <b>Fecha de finalización:</b>
             <%= @offer.end_date.strftime("%d/%m/%y") %>
           </p>
-          
+          <% unless current_user.company? %>
           <h5> Distancia </h5>
 
           <p id="distance"> </p>
+
+          <% end %>
 
           <h5> Inscripciones </h5>
 
@@ -200,12 +202,6 @@
               </table>
           <% else %>
               <ul>La oferta todavía no ha finalizado.</ul>
-          <% end %>
-
-          <% if @user.company? %>
-              <ul>
-                <%= link_to 'Editar resultados', offers_results_path(:id => @offer.id) %>
-              </ul>
           <% end %>
 
         </div>
@@ -352,7 +348,7 @@
 </div>
 
 <script type="text/javascript">
-    <% unless current_user.client.address.nil? || @offer.branch.address.nil? %>
+    <% unless current_user.company? || current_user.client.address.nil? || @offer.branch.address.nil? %>
         var a = getDistanceFromLatLonInKm(<%=current_user.client.address.latitude%>, <%=current_user.client.address.longitude%>, <%=@offer.branch.address.latitude%>, <%=@offer.branch.address.longitude%>);
         var d = document.getElementById("distance");
         d.innerHTML = "A " + Math.round(a)/100 + " kilómetros de tu ubicación.";
@@ -373,4 +369,4 @@
     function deg2rad(deg) {
         return deg * (Math.PI/180)
     }
-</script>
+    </script>
