@@ -7,7 +7,7 @@ class GameWinnerMailer < ActionMailer::Base
     @prize = prize
     @position = position
     @offers = other_offers
-    mail(:to => 'nschejtman@hotmail.com', :subject => 'Has ganado!')
+    mail(:to => @user.email, :subject => 'Has ganado!')
   end
 
 end
