@@ -5,6 +5,7 @@ class FirstGamesController < InheritedResources::Base
     @questions = []
     previous_questions = []
     size = allquestions.size
+
     5.times do
       rand_position = rand(size -1)
       while previous_questions.include? rand_position
@@ -26,12 +27,19 @@ class FirstGamesController < InheritedResources::Base
 
   def index
 
+    current_user.client.current_offer = params[:offer_id] unless params[:offer_id].nil?
+    current_user.client.save
   end
 
   def results
     @time = params[:time].to_i
     @score = params[:score].to_i
+    clientOffer = ClientsOffer.where(:client_id => current_user.id,:offer_id => current_user.client.current_offer).first
+    clientOffer[:time] = Integer(params[:time])
+    clientOffer[:correct_answers] = Integer(params[:score])
+    clientOffer[:participated] = true
+    clientOffer.save
+
   end
 
 end
-
