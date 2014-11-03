@@ -8,7 +8,7 @@
 
 <div class="page-content">
   <input type="hidden" id="questions" value="<%=@questions.as_json%>" >
-  <div class="container">
+  <div class="container" id="questionContainer">
     <div class="show-quiz">
       <%= form_tag "/second_games/results" do %>
         <div class="question">
