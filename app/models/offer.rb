@@ -105,4 +105,24 @@ class Offer < ActiveRecord::Base
   end
 
 
+  def get_newly_finalized_offers
+    offers = List.new
+    Offer.all.each do |offer|
+      unless offer.finalization_checked?
+        unless offer.finished?
+          offers.push(offer)
+        end
+      end
+    end
+    return offers
+  end
+
+  def assign_positions
+    c_os = ClientsOffer.find_all_by_offer_id(self.id).sort_by{|a, b| a.time <=> b.time}
+    c_os.sort_by!{|a,b| a.correct_anwsers <=> b.correct_answers}
+    c_os.each do |c_o, i|
+      c_o.position = i
+    end
+  end
+
 end
