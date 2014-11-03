@@ -2,6 +2,10 @@ class PagesController < ApplicationController
 
   skip_before_filter :authenticate_user!
 
+  def results_email
+
+  end
+
   def work_with_us
     @message = Message.new
   end
