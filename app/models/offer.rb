@@ -117,14 +117,12 @@ class Offer < ActiveRecord::Base
     return offers
   end
 
-  def get_positions(offer)
-    positions = Hash.new
-    c_os = ClientsOffer.find_all_by_offer_id(offer.id).sort_by{|a, b| a.time <=> b.time}
+  def assign_positions
+    c_os = ClientsOffer.find_all_by_offer_id(self.id).sort_by{|a, b| a.time <=> b.time}
     c_os.sort_by!{|a,b| a.correct_anwsers <=> b.correct_answers}
     c_os.each do |c_o, i|
-      positions[i] = c_o.client
+      c_o.position = i
     end
   end
-
 
 end
