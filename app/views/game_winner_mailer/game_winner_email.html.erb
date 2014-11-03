@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Dealhunter, la publicidad revolucionada.</title>
+  <style>
+      a,
+      a:hover {
+          text-decoration: none !important;
+      }
+
+      h1, h2, h3, h4, h5 {
+          margin: 0px !important;
+          text-align: center;
+      }
+
+      p {
+          font-size: 14px;
+          line-height: 20px;
+          color: #333;
+          text-align: center;
+      }
+
+      li {
+          list-style: none;
+      }
+
+      body {
+          font-family: Arial, Helvetica, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: white;
+      }
+
+  </style>
+</head>
+<body style="" marginheight="0" topmargin="0" marginwidth="0" leftmargin="0">
+<table cellpadding="10px" cellspacing="0" align="center" style="background-color: #ffffff;" width="600px">
+<tr>
+  <td>
+    <p style="text-align: left">Hola, <%=@user.email%></p>
+  </td>
+</tr>
+  <tr>
+    <td>
+      <h1>¡Felicidades!</h1>
+      <p>
+      <img src="http://www3.law.harvard.edu/orgs/deltaproject/files/2013/02/ribbon-rosette-300x240.jpeg" alt="ribbon">
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Has finalizado en <%=@position%> en <%=@offer.name%></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Has ganado <%=@prize.name%> <br>
+      El equipo de Dealhunter te felicita por tu desempeño. <br>
+      Aqui hay un par de ofertas que podrian interesarte. <br>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <%=@offers.each do |offer|
+        offer.name
+        end%>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Para ver más ofertas ingresa en <a href="#">www.dealhunter.com</a> <br> y descubre aquellas que puedan interesarte.
+    </td>
+  </tr>
+
+</table>
+</body>
+</html>
