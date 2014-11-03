@@ -1,6 +1,7 @@
 class Offer < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
+  has_many :clients_offers
   has_many :prizes
   has_and_belongs_to_many :clients
   has_and_belongs_to_many :titles
@@ -105,12 +106,14 @@ class Offer < ActiveRecord::Base
   end
 
 
-  def get_newly_finalized_offers
-    offers = List.new
+  def self.get_newly_finalized_offers
+    offers = []
     Offer.all.each do |offer|
-      unless offer.finalization_checked?
-        unless offer.finished?
-          offers.push(offer)
+      if(offer.end_date != nil)
+        unless offer.finalization_checked?
+          unless offer.finished?
+            offers.push(offer)
+          end
         end
       end
     end
@@ -118,10 +121,15 @@ class Offer < ActiveRecord::Base
   end
 
   def assign_positions
-    c_os = ClientsOffer.find_all_by_offer_id(self.id).sort_by{|a, b| a.time <=> b.time}
-    c_os.sort_by!{|a,b| a.correct_anwsers <=> b.correct_answers}
-    c_os.each do |c_o, i|
-      c_o.position = i
+    c_os = ClientsOffer.find_all_by_offer_id(self.id)
+    if c_os.length == 1
+      c_os.position=1
+    else
+      c_os.sort!{|a, b| a.time <=> b.time}
+      c_os.sort!{|a,b| a.correct_answers <=> b.correct_answers}
+      c_os.each do |c_o, i|
+        c_o.position = i
+      end
     end
   end
 
