@@ -1,0 +1,62 @@
+
+
+#container {
+    margin-left: 7%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    background-color: rgba(255, 255, 255, 0.75);
+
+    position: relative;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    box-shadow: 6px 5px 37px 11px dimgrey;;
+    height: 300px;
+}
+
+.label{
+    background-color: transparent !important;
+}
+
+#title{
+    font-size: 3.0em;
+    color: rgba(187, 67, 0, 0.72);
+    padding-top: 50px;
+    font-family: "Inconsolata","Helvetica", Sans-Serif ;
+    text-shadow: 1px 1px 1px;
+}
+
+.spacer{
+    margin-top: 7%;
+}
+
+.label{
+    font-size: 1.5em;
+    color: #000000;
+}
+
+.numero{
+    font-size: 2em;
+    color: #FF9900;
+    margin-left: 40px;
+}
+
+#resGral{
+    font-size: 2em;
+    color: #b33c33;
+    position: relative;
+    left: 75%;
+}
+
+@media screen and (max-width:800px) {
+#topbar{margin-left:1%;margin-right:1%;width:96%;}
+#navContent{margin:1%;width:98%;}
+#game1{margin:1%;width:98%;}
+#game2{margin:1%;width:98%;}
+}
+
+@media screen and (max-width:460px) {
+.option{width:80%;margin-top:5%;}
+}
