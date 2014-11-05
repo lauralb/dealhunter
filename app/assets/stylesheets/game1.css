@@ -54,4 +54,23 @@
 .show-quiz div.hidden, input.hidden{
     display: none;
 }
+input[type=radio]{
+    display: none;
+    margin: 10px;
+}
+
+input[type=radio] + label{
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 99.5%;
+    margin: 2px;
+    background-color: #D7FAEC;
+    opacity: 0.5;
+}
+
+input[type=radio]:checked + label{
+    background-color: #D7FAEC;
+    opacity: 1;
+}
 
