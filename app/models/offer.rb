@@ -111,7 +111,7 @@ class Offer < ActiveRecord::Base
     Offer.all.each do |offer|
       if(offer.end_date != nil)
         unless offer.finalization_checked?
-          unless offer.finished?
+          if offer.finished?
             offers.push(offer)
           end
         end
@@ -122,13 +122,16 @@ class Offer < ActiveRecord::Base
 
   def assign_positions
     c_os = ClientsOffer.find_all_by_offer_id(self.id)
-    if c_os.length == 1
-      c_os.position=1
+
+   if c_os.length == 1
+      c_os.first.position=1
+      c_os.first.save!
     else
       c_os.sort!{|a, b| a.time <=> b.time}
       c_os.sort!{|a,b| a.correct_answers <=> b.correct_answers}
-      c_os.each do |c_o, i|
-        c_o.position = i
+      c_os.each_with_index do |c_o, i|
+        c_o.position = i+1
+        c_o.save!
       end
     end
   end
