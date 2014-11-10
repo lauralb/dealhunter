@@ -7,13 +7,13 @@ class ResultsMailer < ActionMailer::Base
     @prizes = Prize.all.delete_if {|x| x.offer_id != offer.id}
     @company = company
     client_offers = ClientsOffer.all.delete_if{|x| x.offer_id != offer.id && x.participated.nil?}
+    client_offers.sort_by  {|x| x.position}
     @clients= []
     client_offers.each do |co|
-      @clients << co.client
+      @clients << Client.find(co.client_id)
     end
 
-
-    mail(:to => company.email, :subject => "Resumen de oferta #{offer.name}")
+    mail(:to => company.user.email, :subject => "Resumen de oferta #{offer.name}")
   end
 
 end

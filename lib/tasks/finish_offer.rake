@@ -2,6 +2,8 @@ task :finish_offer => :environment do
   offers = Offer.get_newly_finalized_offers
 
   offers.each do |offer|
+    ResultsMailer.results_email(offer.branch.company, offer).deliver
+
     offer.assign_positions
     clientsOffer = ClientsOffer.where(:offer_id=>offer.id)
     clientsOffer.each do |clientOffer|
@@ -17,6 +19,7 @@ task :finish_offer => :environment do
                                                    Offer.all).deliver!
       end
     end
+
     offer.finalization_checked = true
     offer.save!
   end

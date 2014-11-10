@@ -38,7 +38,7 @@
 <table cellpadding="10px" cellspacing="0" align="center" style="background-color: #ffffff;" width="600px">
   <tr>
     <td>
-      <p style="text-align: left">Hola, <%=@company.name%></p>
+      <p style="text-align: left; font-weight: bold">Hola, <%=@company.name%></p>
     </td>
   </tr>
   <tr>
@@ -51,17 +51,17 @@
   </tr>
   <tr>
     <td>
-      <p>La oferta <%=@offer.name%> ha finalizado con los siguientes resultados:</p>
+      <p>La oferta <%=@offer.name%></p> ha finalizado con los siguientes resultados:</p>
     </td>
 
   </tr>
   <tr>
     <td>
-        <% @clients.each_with_index do |client , index| %>
-            <%= "El cliente #{client.name} ha ganado #{@prizes[index].name}" %>
+        <p><% @prizes.each_with_index do |prize, i| %>
+          <%= "El cliente #{@clients[i].user.email} ha ganado #{prize.name}" %>
+          <br>
         <%end%>
-
-
+        </p>
     </td>
   </tr>
 
