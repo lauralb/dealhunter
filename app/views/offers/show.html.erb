@@ -268,8 +268,8 @@ padding: 1px 10px;
             <% if clients_offer.first.nil? %>
                 <%= link_to 'Inscribir', users_inscribe_path(:offer_id => @offer.id), {:type => "button", :class => "btn btn-dealhunter medium full-width rounded-borders-btn", :method => :post, } %>
             <% else %>
-                <%= link_to 'Desinscribir', users_unsubscribe_path(:clients_offers_id => clients_offer.first.id, :offer_id => @offer.id), {:type => "button", :class => "btn btn-dealhunter medium full-width rounded-borders-btn", :method => :post, } %>
                 <% if clients_offer.first.attributes["participated"].blank? %>
+                <%= link_to 'Desinscribir', users_unsubscribe_path(:clients_offers_id => clients_offer.first.id, :offer_id => @offer.id), {:type => "button", :class => "btn btn-dealhunter medium full-width rounded-borders-btn", :method => :post, } %>
                     <% first_game = @offer.is_first_game %>
                     <% path = first_game ? first_games_index_path : second_games_index_path %>
                     <%= link_to 'Jugar!', path, {:type => "button",:style => "margin-top:5px; background-color:rgb(0,100,100)", :class => "btn btn-dealhunter medium full-width rounded-borders-btn", :method => :post, } %>
