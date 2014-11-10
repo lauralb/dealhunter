@@ -1,6 +1,5 @@
 task :finish_offer => :environment do
   offers = Offer.get_newly_finalized_offers
-
   offers.each do |offer|
     offer.assign_positions
     clientsOffer = ClientsOffer.where(:offer_id=>offer.id)
@@ -21,6 +20,7 @@ task :finish_offer => :environment do
     end
     offer.finalization_checked = true
     offer.save!
+
   end
 
 end

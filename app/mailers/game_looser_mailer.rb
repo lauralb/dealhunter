@@ -1,7 +1,7 @@
 class GameLooserMailer < ActionMailer::Base
   default :from => "noresponder@dealhunter.com"
 
-  def game_looser_mailer(user,offer,position,other_offers)
+  def game_looser_email(user,offer,position,other_offers)
     @user = user
     @offer = offer
     @position = position
