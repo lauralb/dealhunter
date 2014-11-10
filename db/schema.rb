@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(:version => 20141020213125) do
+=======
+ActiveRecord::Schema.define(:version => 20141027213559) do
+>>>>>>> Stashed changes
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -150,6 +154,11 @@ ActiveRecord::Schema.define(:version => 20141020213125) do
     t.string   "gmaps"
     t.date     "publication_date"
     t.boolean  "publicated"
+<<<<<<< Updated upstream
+=======
+    t.boolean  "is_first_game"
+    t.boolean  "finalization_checked"
+>>>>>>> Stashed changes
   end
 
   create_table "offers_titles", :force => true do |t|
