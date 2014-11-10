@@ -51,16 +51,20 @@
   </tr>
   <tr>
     <td>
-      <p>La oferta <%=@offer.name%></p> ha finalizado con los siguientes resultados:</p>
+      <p>La oferta <%=@offer.name%> ha finalizado con los siguientes resultados:</p>
     </td>
 
   </tr>
   <tr>
-    <td>
+    <td><% if @noWinners %>
+          <p> No hubo participantes inscriptos. </p>
+        <%else%>
+
         <p><% @prizes.each_with_index do |prize, i| %>
           <%= "El cliente #{@clients[i].user.email} ha ganado #{prize.name}" %>
           <br>
         <%end%>
+      <%end%>
         </p>
     </td>
   </tr>

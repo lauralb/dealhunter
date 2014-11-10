@@ -12,7 +12,7 @@ class ResultsMailer < ActionMailer::Base
     client_offers.each do |co|
       @clients << Client.find(co.client_id)
     end
-
+    @noWinners = @clients.size == 0
     mail(:to => company.user.email, :subject => "Resumen de oferta #{offer.name}")
   end
 
