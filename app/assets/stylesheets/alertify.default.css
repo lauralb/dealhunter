@@ -16,7 +16,7 @@
 	        background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
 }
 	.alertify-text {
-		border: 1px solid #CCC;
+		border: 3px solid #CCC;
 		padding: 10px;
 		border-radius: 4px;
 	}
@@ -70,6 +70,8 @@
 	border-radius: 4px;
 	color: #FFF;
 	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
+    position: relative;
+    top: -300px;
 }
 	.alertify-log-error {
 		background: #FE1A00;
@@ -77,5 +79,6 @@
 	}
 	.alertify-log-success {
 		background: #5CB811;
-		background: rgba(92,184,17,.9);
+		background: rgba(25, 184, 20, 0.90);
+
 	}

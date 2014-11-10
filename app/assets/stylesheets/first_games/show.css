@@ -1,0 +1,15 @@
+input[type=radio]{
+    display: none;
+    margin: 10px;
+}
+
+input[type=radio] + label{
+    display: inline-block;
+    margin: 2px;
+    padding: 4px 12px;
+    background-color: #3253FF;
+}
+
+input[type=radio]:checked + label{
+    background-color: #000066;
+}
