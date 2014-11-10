@@ -16,33 +16,29 @@
 
   <input type="hidden" id="questions" value="<%= @questions.as_json %>">
 
-  <div class="container">
+  <div class="container" style="align-content: center">
     <div class="show-quiz">
       <%= form_tag "/first_games/results" do %>
-          <div class="span4 message-box center" style="opacity: 0.7">
-            <h2 id="question" style="text-align: center"></h2>
+          <div class="span4 message-box center" style="border-radius: 15px">
+            <h2 id="question" style="text-align: center; border-radius: 15px"></h2>
           </div>
-          <!--<div class="span4 message-box center" style="opacity: 0.7">-->
-          <div class="span4 message-box center" style="opacity: 0.7">
-            <input type="radio" name="answer" value="1" id="ans1"> <label for="ans1"><h4 style="text-align: center" id="rta1"></h4></label>
+          <div style="align-content: center">
+          <div style="horizontal">
+            <input type="radio" name="answer" value="1" id="ans1" align="center"> <label for="ans1"><h4 style="text-align: center" id="rta1"></h4></label>
           </div>
-
-          <div class="span4 message-box center" style="opacity: 0.7">
+          <div>
             <input type="radio" name="answer" value="1" id="ans2"> <label for="ans2"><h4 style="text-align: center" id="rta2"></h4></label>
           </div>
-
-          <div class="span4 message-box center" style="opacity: 0.7">
+            <div>
             <input type="radio" name="answer" value="1" id="ans3"> <label for="ans3"><h4 style="text-align: center" id="rta3"></h4></label>
-          </div>
-
-          <div class="span4 message-box center" style="opacity: 0.7">
+            </div>
+            <div>
             <input type="radio" name="answer" value="1" id="ans4"> <label for="ans4"><h4 style="text-align: center" id="rta4"></h4></label>
-          </div>
-
+            </div>
+            </div>
           <div class="answer" hidden>
             <input type="radio" name="answer" value="1" id="ans0">
           </div>
-
           </div>
 
 
@@ -54,7 +50,7 @@
           <br>
 
           <h2 id="timer">
-            <div class="span4 message-box center" style="opacity: 0.7 ; text-align: center ">
+            <div class="span4 message-box center" style="text-align: center ">
               <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
               <input type="text" class="hidden" name="time" id="time">
               <input type="text" class="hidden" name="score" id="score">

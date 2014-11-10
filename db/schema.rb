@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20141020205017) do
+ActiveRecord::Schema.define(:version => 20141027213559) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -151,11 +150,8 @@ ActiveRecord::Schema.define(:version => 20141020205017) do
     t.string   "gmaps"
     t.date     "publication_date"
     t.boolean  "publicated"
-<<<<<<< HEAD
     t.boolean  "is_first_game"
-=======
     t.boolean  "finalization_checked"
->>>>>>> ddeff334910ac2d4022b74a0ebeeaf42c0c537dc
   end
 
   create_table "offers_titles", :force => true do |t|

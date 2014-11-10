@@ -111,7 +111,7 @@ class Offer < ActiveRecord::Base
     Offer.all.each do |offer|
       if(offer.end_date != nil)
         unless offer.finalization_checked?
-          if offer.finished?
+        unless offer.finished?
             offers.push(offer)
           end
         end

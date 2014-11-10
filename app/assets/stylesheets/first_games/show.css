@@ -1,15 +1,19 @@
 input[type=radio]{
     display: none;
     margin: 10px;
+    border: 6px;
+
 }
 
 input[type=radio] + label{
     display: inline-block;
     margin: 2px;
     padding: 4px 12px;
-    background-color: #3253FF;
+    width: 80%;
+    border-color: #08844e;
+    background-color: #66FF66;
 }
 
 input[type=radio]:checked + label{
-    background-color: #000066;
+    background-color: #66FFCC;
 }

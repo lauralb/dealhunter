@@ -22,6 +22,7 @@ task :finish_offer => :environment do
 
     offer.finalization_checked = true
     offer.save!
+
   end
 
 end

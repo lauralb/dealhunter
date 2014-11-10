@@ -64,28 +64,31 @@
 
 .show-quiz div.centered{
     display: block;
+    align-content: center;
     margin: auto;
 }
 .show-quiz div.hidden, input.hidden{
     display: none;
 }
 input[type=radio]{
+    align-self: center;
     display: none;
-    margin: 10px;
+    margin: 14px;
 }
 
 input[type=radio] + label{
-    display: inline-block;
+    align-self: center;
+    width:30%;
+    background-color: #66FFCC;
+    border-radius: 15px;
     position: relative;
-    height: 100%;
-    width: 99.5%;
-    margin: 2px;
-    background-color: #D7FAEC;
-    opacity: 0.5;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
 }
 
 input[type=radio]:checked + label{
-    background-color: #D7FAEC;
-    opacity: 1;
+    background-color: #339999;
 }
 
