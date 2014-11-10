@@ -112,7 +112,6 @@ class Offer < ActiveRecord::Base
       if(offer.end_date != nil)
         unless offer.finalization_checked?
           if offer.finished?
-          unless offer.finished?
             offers.push(offer)
           end
         end
@@ -120,7 +119,7 @@ class Offer < ActiveRecord::Base
     end
     return offers
     end
-    end
+
 
   def self.get_other_offers
     offers = []
@@ -149,3 +148,4 @@ class Offer < ActiveRecord::Base
   end
 
 end
+

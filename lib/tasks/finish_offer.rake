@@ -1,5 +1,6 @@
 task :finish_offer => :environment do
   offers = Offer.get_newly_finalized_offers
+  puts(offers.size)
   offers.each do |offer|
     offer.assign_positions
     clientsOffer = ClientsOffer.where(:offer_id=>offer.id)
