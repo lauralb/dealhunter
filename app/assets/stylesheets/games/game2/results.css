@@ -6,14 +6,26 @@
     margin-top: 5%;
     margin-bottom: 5%;
 
+    background-color: rgba(255, 255, 255, 0.75);
+
     position: relative;
+    border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
+    box-shadow: 6px 5px 37px 11px dimgrey;;
+    height: 300px;
+}
+
+.label{
+    background-color: transparent !important;
 }
 
 #title{
-    font-size: 2.5em;
-    color: #000066;
+    font-size: 3.0em;
+    color: rgba(187, 67, 0, 0.72);
+    padding-top: 50px;
+    font-family: "Inconsolata","Helvetica", Sans-Serif ;
+    text-shadow: 1px 1px 1px;
 }
 
 .spacer{

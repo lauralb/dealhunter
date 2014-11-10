@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20141020205017) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "newsletter_frequency_id", :default => 4
+    t.integer  "current_offer"
   end
 
   create_table "clients_companies", :force => true do |t|
@@ -93,8 +94,10 @@ ActiveRecord::Schema.define(:version => 20141020205017) do
     t.integer  "client_id"
     t.integer  "position"
     t.boolean  "participated"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "time"
+    t.integer  "correct_answers"
   end
 
   add_index "clients_offers", ["client_id"], :name => "index_clients_offers_on_client_id"
@@ -138,8 +141,8 @@ ActiveRecord::Schema.define(:version => 20141020205017) do
 
   create_table "offers", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "photo"
     t.integer  "branch_id"
     t.text     "description"
@@ -148,7 +151,11 @@ ActiveRecord::Schema.define(:version => 20141020205017) do
     t.string   "gmaps"
     t.date     "publication_date"
     t.boolean  "publicated"
+<<<<<<< HEAD
     t.boolean  "is_first_game"
+=======
+    t.boolean  "finalization_checked"
+>>>>>>> ddeff334910ac2d4022b74a0ebeeaf42c0c537dc
   end
 
   create_table "offers_titles", :force => true do |t|

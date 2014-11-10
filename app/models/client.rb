@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+  has_many :clients_offers
   belongs_to :user, :dependent => :destroy
   has_and_belongs_to_many :titles
   has_one :address
@@ -6,7 +7,7 @@ class Client < ActiveRecord::Base
   belongs_to :newsletter_frequency
   has_and_belongs_to_many :companies
 
-  attr_accessible :first_name, :last_name, :address_attributes, :titles, :newsletter_frequency_id,:user_attributes, :user_id
+  attr_accessible :first_name, :last_name, :address_attributes, :titles, :newsletter_frequency_id,:user_attributes, :user_id, :current_offer
 
  # after_validation :geocode
 
