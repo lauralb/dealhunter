@@ -10,13 +10,13 @@
 </head>
 <body>
 <div id="container">
-<div id="title" align="center">Terminaste el Deal-Trivia!!!</div>
+<div id="title" align="center" style="color: #2aa198;">Terminaste el Deal-Trivia!!!</div>
 <div class="spacer"></div>
 <table align="center">
   <tr>
     <div id="respuestasCorrectas">
       <td> <label class="label" id="lblResp">Respuestas Correctas</label></td>
-      <td> <label class="numero" id="nroResp"><%= @score %>/5 </label></td>
+      <td> <label class="numero" id="nroResp" style="color: #2a6fa1" ><%= @score %>/5 </label></td>
     </div>
   </tr>
   <tr>
@@ -30,7 +30,7 @@
       <td>
         <br>
         <br>
-        <label class="numero" id="nroTiempo"><%= @time %> seg.</label>
+        <label class="numero" id="nroTiempo" style="color: #2a6fa1"><%= @time %> seg.</label>
       </td>
     </div>
   </tr>
