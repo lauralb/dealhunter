@@ -111,14 +111,28 @@ class Offer < ActiveRecord::Base
     Offer.all.each do |offer|
       if(offer.end_date != nil)
         unless offer.finalization_checked?
-        unless offer.finished?
+          if offer.finished?
             offers.push(offer)
           end
         end
       end
     end
     return offers
+    end
+
+
+  def self.get_other_offers
+    offers = []
+    Offer.all.each do|offer|
+      unless offer.finalization_checked?
+        unless offer.finished?
+          offers.push(offer)
+        end
+      end
+    end
+  return offers
   end
+
 
   def assign_positions
     c_os = ClientsOffer.find_all_by_offer_id(self.id)
@@ -137,3 +151,4 @@ class Offer < ActiveRecord::Base
   end
 
 end
+

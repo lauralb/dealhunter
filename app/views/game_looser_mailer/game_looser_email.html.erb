@@ -43,7 +43,7 @@
   </tr>
   <tr>
     <td>
-      <h1><%=@offer%> ha finalizado</h1>
+      <h1><%=@offer.name%> ha finalizado</h1>
     </td>
   </tr>
   <tr>
@@ -59,9 +59,9 @@
   </tr>
   <tr>
     <td>
-        <%=@offers.each do |offer|
-        offer.name
-        end%>
+        <%@offers.each do |offer|%>
+          <%=offer.name%>
+        <%end%>
     </td>
   </tr>
   <tr>
