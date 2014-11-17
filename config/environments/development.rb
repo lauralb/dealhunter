@@ -5,6 +5,7 @@ DealHunter::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.secret_token = 'd6be2a130b79495adb7d3f49ea9bd7686a2300c267422a323b603a961b56a6ba08177b48e258d800e4bd2dd55b1bbbd9a98e22fa5640adf0e16cc7484ddc2433'
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
