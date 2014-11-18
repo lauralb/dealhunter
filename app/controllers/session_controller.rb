@@ -4,5 +4,4 @@ class SessionController < ApplicationController
     session[:user_id] = user.__id__
     redirect_to root_url
   end
-  endclass
 end

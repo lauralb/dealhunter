@@ -44,6 +44,7 @@ gem 'mini_magick', '3.5.0'
 gem 'jquery_datepicker'
 
 gem 'bootstrap-sass'
+gem 'simple_form'
 
 gem "kaminari"
 
@@ -56,6 +57,7 @@ gem 'eventmachine'
 gem 'koala'
 
 gem 'omniauth'
+gem 'nokogiri', '1.6.3.1'
 
 gem 'devise'
 
