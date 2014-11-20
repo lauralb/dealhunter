@@ -39,7 +39,6 @@ class Offer < ActiveRecord::Base
         has = true
       end
     end
-    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+has.to_s+">>>>>>>>>>>>>>>>>>>>>>>>>><"
     return has
 
   end
@@ -56,6 +55,9 @@ class Offer < ActiveRecord::Base
 
   def time_coherence
     errors.add(:start_date, "No puede ser posterior a la fecha de fin") if self.start_date > self.end_date unless (start_date.nil? or end_date.nil?)
+    errors.add(:publication_date, "No puede ser posterior a la fecha de fin") if self.publication_date > self.end_date.to_date unless (publication_date.nil? or end_date.nil?)
+    errors.add(:publication_date, "No puede ser anterior a la fecha de inicion") if self.publication_date < self.start_date.to_date unless (publication_date.nil? or start_date.nil?)
+
   end
 
   def company
