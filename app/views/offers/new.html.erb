@@ -116,7 +116,7 @@
           </div>
         </div>
       </div>
-      <div class="span8 offer-btns-div" >
+      <div class="span8 offer-btns-div prize" >
         <% f.object.prizes.build unless !f.object.prizes.blank? %>
         <%= f.semantic_fields_for :prizes do |prize| %>
             <%= prize.inputs "Premio" do %>
@@ -245,6 +245,21 @@
         opacity: 0.5;
         filter: alpha(opacity=100);
     }
+
+    .inline-errors {
+        margin-left: 120px;
+        color: red;
+    }
+
+
+    .prize p {
+        padding-top: 35px;
+        width: 144px;
+        float: left;
+        margin-left: -140px;
+        padding-right: 0px;
+    }
+
 </style>
 
 <script>
