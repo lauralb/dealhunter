@@ -40,13 +40,18 @@
 
 </body>
 <script>
+    <%
+      def abbr(s)
+          s.length > 3 ? s[0..2] : s
+      end
+  %>
 
     //EMPRESA
     new Morris.Bar({
         element: 'ofertasChart',
         data: [
             <% @offers_published.each do |a| %>
-            { y:'<%= a[0]%>', a:<%= a[1]%> },
+            { y:'<%= abbr(a[0])%>', a:<%= a[1]%> },
             <% end %>
         ],
         xkey: 'y',
@@ -60,7 +65,7 @@
         element: 'inscripcionesChart',
         data: [
             <% @client_offers.each do |a| %>
-            { y:'<%= a[0]%>', a:<%= a[1]%> },
+            { y:'<%= abbr(a[0])%>', a:<%= a[1]%> },
             <% end %>
         ],
         xkey: 'y',
