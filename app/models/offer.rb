@@ -25,6 +25,9 @@ class Offer < ActiveRecord::Base
 
   def has_prizes
     errors.add(:base, 'must add at least one prize') if self. prizes.blank?
+    self.prizes.each do |p|
+      errors.add(:base, "Valores erroneos en los premios") if p.real_price <= 0 || p.discount_percentage <= 0
+    end
   end
 
   def get_current_weight
