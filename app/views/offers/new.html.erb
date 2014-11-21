@@ -67,10 +67,6 @@
             <%= f.input :name, :label => false, :input_html => {:class => "pull-right input-medium", :placeholder => "Nombre"} %>
           </div>
           <div class="control-group clearfix">
-            <label class="pull-left" for="inputEmail">Fecha de public...</label>
-            <%= f.input :publication_date, :as => :string, :input_html => {:class => 'datepicker pull-right input-medium datepicker'}, :label => false %>
-          </div>
-          <div class="control-group clearfix">
             <label class="pull-left" for="inputEmail">Fecha de inicio</label>
             <%= f.input :start_date, :as => :string, :input_html => {:class => 'datepicker pull-right input-medium datepicker'}, :label => false %>
           </div>
@@ -81,6 +77,10 @@
                   <option value="<%= i %>"><%= i %></option>
               <% end %>
             </select>
+          </div>
+          <div class="control-group clearfix">
+            <label class="pull-left" for="inputEmail">Fecha de public...</label>
+            <%= f.input :publication_date, :as => :string, :input_html => {:class => 'datepicker pull-right input-medium datepicker'}, :label => false %>
           </div>
         </div>
       </div>
