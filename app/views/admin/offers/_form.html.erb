@@ -7,9 +7,9 @@
       <%=f.inputs "Info de Oferta" do%>
           <%=f.input :name %>
           <%=f.input :branch %>
-          <%=f.input :publication_date, :as => :string %>
-          <%=f.input :start_date, :as => :string %>
-          <%=f.input :end_date, :as => :string %>
+          <%=f.input :publication_date, :as => :date_picker, :input_html => { :value => Date.today } %>
+          <%=f.input :start_date, :as => :date_picker, :input_html => { :value => Date.today } %>
+          <%=f.input :end_date, :as => :date_picker, :input_html => { :value => Date.today >> 1 } %>
           <%=f.input :photo %>
 
       <% end %>
