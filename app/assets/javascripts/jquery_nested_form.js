@@ -57,7 +57,9 @@
       if (target) {
         return $(content).appendTo($(target));
       } else {
-        return $(content).insertBefore(link);
+          var x = $(content).insertBefore(link);
+          document.getElementsByClassName('fields')[1].parentNode.removeChild(document.getElementsByClassName('fields')[1]);
+          return x;
       }
     },
     removeFields: function(e) {
