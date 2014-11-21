@@ -58,6 +58,12 @@
         return $(content).appendTo($(target));
       } else {
           var x = $(content).insertBefore(link);
+          var z = document.getElementsByClassName('fields');
+          for (var i=0; i< z.length; i++) {
+              if (z[i].style.display == "none") {
+                  z[i].parentNode.removeChild(z[i]);
+              }
+          }
           document.getElementsByClassName('fields')[1].parentNode.removeChild(document.getElementsByClassName('fields')[1]);
           return x;
       }
