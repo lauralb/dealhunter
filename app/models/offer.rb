@@ -58,7 +58,7 @@ class Offer < ActiveRecord::Base
     errors.add(:publication_date, "No puede ser posterior a la fecha de fin") if self.publication_date > self.end_date.to_date unless (publication_date.nil? or end_date.nil?)
     errors.add(:publication_date, "No puede ser anterior a la fecha de inicio") if self.publication_date < self.start_date.to_date unless (publication_date.nil? or start_date.nil?)
 
-    errors.add(:end_date, "No puede ser anterior a la fecha de hoy") if self.end_date > Date.today() unless end_date.nil?
+    errors.add(:end_date, "No puede ser anterior a la fecha de hoy") if self.end_date < Date.today() unless end_date.nil?
 
 
   end
