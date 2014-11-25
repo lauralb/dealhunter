@@ -103,7 +103,7 @@ ImageQuestion.create!(:url => "http://www.banderas.pro/banderas/bandera-colombia
 ImageQuestion.create!(:url => "http://www.banderas.pro/banderas/bandera-rusia-4.gif", :question =>"¿De qué país es la bandera?", :answer =>"Rusia")
 ImageQuestion.create!(:url => "http://www.bandetex.com/resources/archivosbd/productos_galeria/7f0bf4597951c063a11f2780aa58c2c6.jpg", :question =>"¿De qué país es la bandera?", :answer =>"Rusia")
 ImageQuestion.create!(:url => "http://images.nationalgeographic.com/wpf/media-live/photos/000/002/cache/arabian-camel_223_600x450.jpg", :question =>"¿Qué animal es?", :answer =>"camello")
-ImageQuestion.create!(:url => "http://www.ihotwallpapers.com/wp-content/uploads/2014/09/Pepsi-logo-9.jpg", :question =>"¿Qué marca es?", :answer =>"Pepsi")
+ImageQuestion.create!(:url => "http://pluggers.fr/wp-content/uploads/2014/03/PEPSI-LOGO.jpg", :question =>"¿Qué marca es?", :answer =>"Pepsi")
 ImageQuestion.create!(:url => "http://www.armino.ro/wp-content/uploads/2009/09/audi_logo.jpg", :question =>"¿Qué marca es?", :answer =>"Audi")
 ImageQuestion.create!(:url => "http://marketing.blogs.ie.edu/archives/NT_SANTANDER.jpg", :question =>"¿Qué marca es?", :answer =>"Santander")
 ImageQuestion.create!(:url => "http://i46.tinypic.com/23wmro1.png", :question =>"¿Qué película es?", :answer =>"Matrix")
