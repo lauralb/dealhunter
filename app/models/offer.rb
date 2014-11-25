@@ -24,10 +24,10 @@ class Offer < ActiveRecord::Base
   acts_as_gmappable
 
   def has_prizes
-    errors.add(:base, 'must add at least one prize') if self. prizes.blank?
+    errors.add(:description, 'must add at least one prize') if self. prizes.blank?
     self.prizes.each do |p|
-      errors.add(:base, "El precio de un premio no puede ser mayor a 10000") if p.real_price > 10000
-      errors.add(:base, "Valores erroneos en los premios") if p.real_price <= 0 || p.discount_percentage <= 0
+      errors.add(:description, "El precio de un premio no puede ser mayor a 10000") if p.real_price > 10000
+      errors.add(:description, "Valores erroneos en los premios") if p.real_price <= 0 || p.discount_percentage <= 0
     end
   end
 
