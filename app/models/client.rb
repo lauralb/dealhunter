@@ -18,7 +18,7 @@ class Client < ActiveRecord::Base
                                       attributes['password'].blank?
                                 }
 
-  # validates_presence_of :user
+  validates_presence_of :user
 
   def prefer(preference)
     prefer = false
