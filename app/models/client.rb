@@ -45,7 +45,7 @@ class Client < ActiveRecord::Base
         clients_offer.each do |c|
           if c.participated
             position = c.position
-            total += prices.at(position-1).discounted_price
+            total += prices.at(position-1).discounted_price unless prices.at(position-1).nil?
           end
         end
     end
@@ -63,7 +63,7 @@ class Client < ActiveRecord::Base
       clients_offer.each do |c|
         if c.participated
           position = c.position
-          total += prices.at(position-1).real_price
+          total += prices.at(position-1).real_price unless prices.at(position-1).nil?
         end
       end
     end

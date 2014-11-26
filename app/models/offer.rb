@@ -24,10 +24,14 @@ class Offer < ActiveRecord::Base
   acts_as_gmappable
 
   def has_prizes
-    errors.add(:description, 'must add at least one prize') if self. prizes.blank?
+    errors.add(:description, 'debe tener al menos un premio') if self. prizes.blank?
     self.prizes.each do |p|
       errors.add(:description, "El precio de un premio no puede ser mayor a 10000") if p.real_price > 10000
       errors.add(:description, "Valores erroneos en los premios") if p.real_price <= 0 || p.discount_percentage <= 0
+
+      self.errors[:base] << "Los precios deben ser positivos" if p.real_price <= 0
+      self.errors[:base] << "Los porcentajes de descuentos deben ser positivos y menores a 100" if p.discount_percentage > 100 || p.discount_percentage <= 0
+
     end
   end
 
@@ -62,7 +66,8 @@ class Offer < ActiveRecord::Base
       errors.add(:start_date, "No puede ser posterior a la fecha de fin") if self.start_date > self.end_date unless (start_date.nil? or end_date.nil?)
       errors.add(:publication_date, "No puede ser posterior a la fecha de fin") if self.publication_date > self.end_date.to_date unless (publication_date.nil? or end_date.nil?)
       errors.add(:publication_date, "No puede ser anterior a la fecha de inicio") if self.publication_date < self.start_date.to_date unless (publication_date.nil? or start_date.nil?)
-      errors.add(:publication_date, "No puede ser anterior a la fecha de hoy") if self.publication_date < Date.today() unless publication_date.nil?
+
+    #  errors.add(:publication_date, "No puede ser anterior a la fecha de hoy") if self.publication_date < Date.today() unless publication_date.nil?
     #  errors.add(:end_date, "No puede ser anterior a la fecha de hoy") if self.end_date < Date.today() unless end_date.nil?
     end
   end
