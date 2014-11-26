@@ -436,7 +436,7 @@ class UsersController < ApplicationController
     a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2)
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
     d = radius * c; # Distance in km
-    return d
+    return d/10
   end
 
   def deg2rad(deg)

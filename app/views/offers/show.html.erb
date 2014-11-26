@@ -359,7 +359,7 @@ padding: 1px 10px;
     <% unless current_user.company? || current_user.client.address.nil? || @offer.branch.address.nil? %>
         var a = getDistanceFromLatLonInKm(<%=current_user.client.address.latitude%>, <%=current_user.client.address.longitude%>, <%=@offer.branch.address.latitude%>, <%=@offer.branch.address.longitude%>);
         var d = document.getElementById("distance");
-        d.innerHTML = "A " + Math.round(a)/100 + " kilómetros de tu ubicación.";
+        d.innerHTML = "A " + Math.round(a)/1000 + " kilómetros de tu ubicación.";
     <% end %>
     function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
         var R = 6371000; // Radius of the earth in m
